@@ -9,10 +9,7 @@
 	</center>
 	<form action="<?php echo 'tambah_aksi'; ?>" method="post">
 		<table style="margin:20px auto;">
-			<tr>
-				<td>Tanggal Daftar</td>
-				<td> <?php echo date("Y-m-d H:i:s"); ?> </td>
-			</tr>
+			
 			<tr>
 				<td>Nama</td>
 				<td><input type="text" name="admin_nama"></td>
