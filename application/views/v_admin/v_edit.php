@@ -4,7 +4,7 @@
 </head>
 <body>
 	<?php foreach($tbl_admin as $a){ ?>
-	<form action="<?php echo base_url('index.php/'). 'admin/update'; ?>" method="post">
+	<form action="<?php echo base_url('index.php/'). 'admin/user_admin/update'; ?>" method="post">
 		<table style="margin:20px auto;">
 		    
 			<tr>

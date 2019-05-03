@@ -36,7 +36,32 @@ class Transaksi_keluar extends CI_Controller{
  //        echo json_encode($data);
  //    }
 
+	function simpan_transaksi_keluar () {
+		$total=$this->input->post('total');
+		$total_sepatu=$this->input->post('total_sepatu');
+		$keterangan=$this->input->post('keterangan');
+		$id_member =$this->input->post('id_member');
+		$nama=$this->input->post('nama');
+		$alamat=$this->input->post('alamat');
+		$no_telp=$this->input->post('no_telp');
 
+		$tk_nofak=$this->m_penjualan->get_tk_nofak();
+		$this->session->set_userdata('tk_nofak',$tk_nofak);
+
+		$order_proses=$this->m_penjualan->simpan_transaksi_keluar($tm_nofak,$total,$total_sepatu,$keterangan,$id_member,$nama,$alamat,$no_telp);
+
+		if($order_proses){
+			$this->cart->destroy();
+			//$this->load->view('admin/alert/alert_sukses');
+			redirect('admin/transaksi_masuk');
+		} else {
+
+			redirect('admin/transaksi_masuk');
+		}
+
+
+
+}
 }
 
  ?>

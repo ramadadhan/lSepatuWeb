@@ -100,6 +100,32 @@ function get_tm_nofak(){
         return $hasil;
 	}
 
+	function simpan_transaksi_keluar(){
+
+		$admin_id="2";
+		$this->db->query("INSERT INTO tbl_transaksi_masuk(
+				tm_nofak,tm_total_sepatu,tm_total,tm_admin_id,tm_keterangan,tm_user_id,tm_nama,tm_alamat,tm_no_telp)
+				VALUES ('$tm_nofak','$total_sepatu','$total','$admin_id','$keterangan','$id_member','$nama','$alamat','$no_telp')");
+		foreach ($this->cart->contents() as $item) {
+
+			$data = array(
+
+				'dtm_nofak' => $tm_nofak,
+				'dtm_paket_id' => $item['id'],
+				'dtm_paket_nama' => $item['name'],
+				'dtm_satuan' => $item['satuan'],
+				'dtm_harga' => $item['price'],
+				'dtm_qty' => $item['qty'],
+				'dtm_total' => $item['subtotal']
+
+			);
+			$this->db->insert('tbl_detail_transaksi_masuk',$data);
+
+		}
+		return true;
+
+	}
+
 }
 
 
