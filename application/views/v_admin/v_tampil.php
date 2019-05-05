@@ -6,7 +6,7 @@
 <body>
 <div class="table-responsive">
 
-	<center><?php echo anchor('admin/tambah','Tambah Data'); ?></center>
+	<center><?php echo anchor('admin/user_admin/tambah','Tambah Data'); ?></center>
 	<table  style="margin:20px auto;" border="1"  width="100%">
 		<tr>
 			<th>No</th>
@@ -31,9 +31,9 @@
             <td><?php echo $a->admin_level ?></td>
 			<td><?php echo $a->admin_status ?></td>
 			<td>
-			      <?php echo anchor('admin/edit/'.$a->admin_id,'Edit'); ?>
+			      <?php echo anchor('admin/user_admin/edit/'.$a->admin_id,'Edit'); ?>
 				  
-                              <?php echo anchor('admin/hapus/'.$a->admin_id,'Hapus'); ?>
+                              <?php echo anchor('admin/user_admin/hapus/'.$a->admin_id,'Hapus'); ?>
 			</td>
 		</tr>
 		<?php } ?>
