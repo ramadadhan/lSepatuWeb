@@ -26,39 +26,39 @@
                 'harga' => $paket_harga
                 );
             $this->m_user->input_data($data,'tbl_paket');
-            redirect('crud/index');
+            redirect('data_paket/index');
         }
     
-        function hapus($id){
-            $where = array('id' => $id);
+        function hapus($paket_id){
+            $where = array('id' => $paket_id);
             $this->m_user->hapus_data($where,'tbl_paket');
             redirect('admin/data_paket/index');
         }
 
-        function edit($id){
-            $where = array('id' => $id);
+        function edit($paket_id){
+            $where = array('id' => $paket_id);
             $data['tbl_paket'] = $this->m_user->edit_data($where,'tbl_paket')->result();
             $this->load->view('v_edit',$data);
         }
 
         function update(){
-            $id = $this->input->post('id');
-            $nama = $this->input->post('nama');
-            $alamat = $this->input->post('alamat');
-            $pekerjaan = $this->input->post('pekerjaan');
+            $paket_id = $this->input->post('id');
+            $paket_nama = $this->input->post('nama paket');
+            $paket_satuan = $this->input->post('satuan');
+            $paket_harga = $this->input->post('harga');
         
             $data = array(
-                'nama' => $nama,
-                'alamat' => $alamat,
-                'pekerjaan' => $pekerjaan
+                'nama paket' => $paket_nama,
+                'satuan' => $paket_satuan,
+                'harga' => $paket_harga
             );
         
             $where = array(
-                'id' => $id
+                'id' => $paket_id
             );
         
             $this->m_user->update_data($where,$data,'tbl_paket');
-            redirect('crud/index');
+            redirect('data_paket/index');
         }
 
 
