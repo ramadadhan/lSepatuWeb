@@ -126,6 +126,40 @@ body {
 </nav>
 </header>
 
+<div class="table-responsive">
+    <table  class="table table-bordered" style="font-size:13px;margin-top:10px;">
+        <thead>
+            <tr>
+                <th style="text-align:center;">No</th>
+                <th style="text-align:center;">ID Paket</th>
+                <th style="text-align:center;">Nama paket</th>
+                <th style="text-align:center;">Satuan</th>
+                <th style="text-align:center;">Harga(Rp)</th>
+                <th>Aksi</th>             	         	
+            </tr>
+        </thead>
+        <?php 
+				$no = 1;
+				foreach($paket as $p){ 
+				?>
+				<tr>
+					<td style="text-align:center;"><?php echo $no++ ?></td>
+					<td><?php echo $p->paket_id ?></td>
+					<td><?php echo $p->paket_nama ?></td>
+					<td><?php echo $p->paket_satuan ?></td>
+					<td><?php echo $p->paket_harga ?></td>
+                    <td>
+						<?php echo anchor('admin/data_paket/edit/'.$p->id,'Edit'); ?>
+						<?php echo anchor('admin/data_paket/hapus/'.$p->id,'Hapus'); ?>
+					</td>
+				</tr>
+				<?php } ?>
+
+    </table>
+</div>
+
+
+
 	<!-- jQuery -->
     <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script> 
 
