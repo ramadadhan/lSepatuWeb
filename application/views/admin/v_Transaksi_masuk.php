@@ -27,6 +27,9 @@
 <body>
 
 	<!-- Navigation -->
+	<?php 
+        $this->load->view('admin/navbar');
+   ?>
 
 
 	<!-- Page Content -->
