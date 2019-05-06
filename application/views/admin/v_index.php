@@ -23,7 +23,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>"> 
     
 </head>
-
+<?php 
+        $this->load->view('admin/navbar');
+   ?>
 
 
 <!-- page content -->
@@ -49,8 +51,60 @@
 
 			<div class="menu-item blue" style="height:150px;">
 				<a href="" data-toggle="modal">
-					<i class=""></i>
-					<p style="text-align:left;font-size:14px;padding-left:5px;">Transaksi</p>
+					<i class="fa fa-cart-plus"></i>
+					<p style="text-align:left;font-size:14px;padding-left:5px;">Transaksi Masuk</p>
+				</a>
+				
+				
+			</div>
+			
+		</div>
+
+		<div class="col-md-3 portfolio-item">
+
+			<div class="menu-item blue" style="height:150px;">
+				<a href="" data-toggle="modal">
+					<i class="fa fa-cart-arrow-down"></i>
+					<p style="text-align:left;font-size:14px;padding-left:5px;">Transaksi Keluar</p>
+				</a>
+				
+				
+			</div>
+			
+		</div>
+
+		<div class="col-md-3 portfolio-item">
+
+			<div class="menu-item blue" style="height:150px;">
+				<a href="" data-toggle="modal">
+					<i class="fa fa-cart-plus"></i>
+					<p style="text-align:left;font-size:14px;padding-left:5px;">Transaksi Masuk</p>
+				</a>
+				
+				
+			</div>
+			
+		</div>
+
+		<div class="col-md-3 portfolio-item">
+
+			<div class="menu-item blue" style="height:150px;">
+				<a href="" data-toggle="modal">
+					<i class="fa fa-cart-plus"></i>
+					<p style="text-align:left;font-size:14px;padding-left:5px;">Transaksi Masuk</p>
+				</a>
+				
+				
+			</div>
+			
+		</div>
+
+		<div class="col-md-3 portfolio-item">
+
+			<div class="menu-item blue" style="height:150px;">
+				<a href="" data-toggle="modal">
+					<i class="fa fa-cart-plus"></i>
+					<p style="text-align:left;font-size:14px;padding-left:5px;">Transaksi Masuk</p>
 				</a>
 				
 				
