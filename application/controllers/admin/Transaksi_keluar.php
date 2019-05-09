@@ -18,11 +18,17 @@ class Transaksi_keluar extends CI_Controller{
 		$data['data'] = $this->m_penjualan->tampil_transaksi_masuk();
 		$kode_tm=$this->input->post('kode_tm');
 		$data['kode_dtm']=$this->m_penjualan->get_detail_transaksi_masuk($kode_tm);
-		$data['kode_tm']=$this->m_penjualan->get_transaksi_masuk($kode_tm);
-		$this->load->view('admin/v_transaksi_keluar',$data);
-		//$this->load->view('admin/v_penjualan');
+		$data['kode_tm']=$this->m_penjualan->get_transaksi_masuk($kode_tm);		
+		$this->load->view('admin/v_transaksi_keluar',$data);		
 
 	}
+	function get_member(){
+        $idmember=$this->input->post('id_member');
+		$data=$this->m_penjualan->get_member($idmember);
+		echo json_encode($data);
+    }
+
+	
 
 	
 	// function get_detail_transaksi_masuk2(){

@@ -165,12 +165,12 @@
                 
                 <tr>
                     <th>ID Member</th>
-                    <th style="text-align:right;"><input type="text" id="id_member" name="id_member" class="form-control input-sm" value="<?php echo $tm['tm_user_id'];?>" placeholder="" style="margin-bottom:5px;text-align:right;" ></th>
+                    <th style="text-align:right;"><input type="text" id="id_member" name="id_member" class="form-control input-sm"  placeholder="" style="margin-bottom:5px;text-align:right;" ></th>
                    
                 </tr>
                 <tr>
                     <th>Nama</th>
-                    <th style="text-align:right;"><input type="text" id="nama" name="nama" class="form-control input-sm" value="<?php echo $tm['tm_nama'];?>" style="margin-bottom:5px;text-align:right;" required></th>                     
+                    <th style="text-align:right;"><input type="text" id="nama_member" name="nama_member" class="form-control input-sm"  style="margin-bottom:5px;text-align:right;" required></th>                     
                 </tr>
                 
                 
@@ -365,6 +365,34 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
+             $('#id_member').on('input',function(){
+                 
+                var kode=$(this).val();
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url('admin/Transaksi_keluar/get_member')?>",
+                    dataType : "JSON",
+                    data : {kode: kode},
+                    cache:false,
+                    success: function(data){
+                        $.each(data,function(user_id, user_nama, user_alamat, user_no_telp){
+                            //$('[name="id_member"]').val(data.user_id);
+                            $('[name="nama_member"]').val(data.user_nama);
+                            //$('[name=""]').val(data.user_alamat);
+                            //$('[name=""]').val(data.user_no_telp);
+                             
+                        });
+                         
+                    }
+                });
+                return false;
+           });
+ 
+        });
+    </script>
+
+    <!-- <script type="text/javascript">
+        $(document).ready(function(){
              $('#kode_tm').on('input',function(){
                  
                 var kode_tm=$(this).val();
@@ -393,9 +421,9 @@
            });
  
         });
-    </script>
+    </script> -->
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function(){
              $('#kode_tm').on('input',function(){
                  
@@ -423,7 +451,7 @@
            });
  
         });
-    </script>
+    </script> -->
 
 
     <script type="text/javascript">

@@ -122,7 +122,7 @@
                 </tr>
                 <tr>
                     <th>ID Member</th>
-                    <th style="text-align:right;"><input type="text" id="id_member" name="id_member" class="form-control input-sm" placeholder="Jika ada" style="margin-bottom:5px;" ></th>
+                    <th style="text-align:right;"><input type="text" id="idm" name="idm" class="form-control input-sm" placeholder="Jika ada" style="margin-bottom:5px;" ></th>
                    
                 </tr>
                 <tr>
@@ -135,7 +135,7 @@
                 </tr>
                 <tr>
                     <th>No Telp/WA</th>
-                    <th style="text-align:right;"><input type="text" id="no_telp" name="no_telp" class="form-control input-sm" style="margin-bottom:5px;" required></th>                     
+                    <th style="text-align:right;"><input type="text" id="telp" name="telp" class="form-control input-sm" style="margin-bottom:5px;" required></th>                     
                 </tr>
 
                 <tr align="right">
@@ -145,6 +145,8 @@
                 </th>	
 							
 						</tr>
+
+						
                 <!-- <tr>
                     <th></th>
                     <th>Kembalian(Rp)</th>
@@ -232,6 +234,9 @@
 
 	</div>
 	<!-- /.container -->
+	
+
+
 
 	<!-- Footer -->
         <footer>
@@ -290,7 +295,59 @@
     <script src="<?php echo base_url().'assets/js/bootstrap-datetimepicker.min.js'?>"></script>
 
 
-
+    <!-- <script type="text/javascript">
+        $(document).ready(function(){
+             $('#kode').on('input',function(){
+                 
+                var kode=$(this).val();
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url('admin/transaksi_masuk/get_barang')?>",
+                    dataType : "JSON",
+                    data : {kode: kode},
+                    cache:false,
+                    success: function(data){
+                        $.each(data,function(kode, nama_barang, harga, satuan){
+                            $('[name="nama"]').val(data.nama_barang);
+                            $('[name="harga"]').val(data.harga);
+                            $('[name="satuan"]').val(data.satuan);
+                             
+                        });
+                         
+                    }
+                });
+                return false;
+           });
+ 
+        });
+    </script> -->
+    < <script type="text/javascript">
+        $(document).ready(function(){
+             $('#idm').on('input',function(){
+                 
+                var kode=$(this).val();
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url('admin/transaksi_masuk/get_member')?>",
+                    dataType : "JSON",
+                    data : {kode: kode},
+                    cache:false,
+                    success: function(data){
+                        $.each(data,function(user_id, user_nama, user_alamat, user_no_telp){
+                            //$('[name="id_member"]').val(data.user_id);
+                            $('[name="nama"]').val(data.user_nama);
+                            $('[name="alamat"]').val(data.user_alamat);
+                            $('[name="telp"]').val(data.user_no_telp);
+                             
+                        });
+                         
+                    }
+                });
+                return false;
+           });
+ 
+        });
+    </script> 
 
 
     <script type="text/javascript">
@@ -321,6 +378,9 @@
             //     }
             // });
         });
-    </script>		
+    </script>	
+
+    
+    </script>	
 </body>
 </html>
