@@ -27,7 +27,7 @@ function get_tm_nofak(){
         }else{
             $kd = "0001";
         }
-        return $tm.date('dmy').$kd;
+        return $tm.date('ymd').$kd;
 	}
 
 
@@ -103,23 +103,32 @@ function get_tm_nofak(){
         }
         return $hasil;
 	}
-	function simpan_transaksi_keluar(){
+
+	function get_tk_nofak(){
+		$q = $this->db->query("SELECT MAX(RIGHT(tk_nofak,4)) AS kd_max FROM tbl_transaksi_keluar WHERE DATE(tk_tanggal)=CURDATE()");
+        $kd = "";
+        $tk = "TK";
+        if($q->num_rows()>0){
+            foreach($q->result() as $k){
+            	
+                $tmp = ((int)$k->kd_max)+1;
+                $kd = sprintf("%04s", $tmp );
+            }
+        }else{
+            $kd = "0001";
+        }
+        return $tk.date('ymd').$kd;
+	}
+	function simpan_transaksi_keluar($tk_nofak,$tm_nofak,$total_sepatu,$total,$jml_uang,$kembalian,$idm,$nama){
 		$admin_id="2";
-		$this->db->query("INSERT INTO tbl_transaksi_masuk(
-				tm_nofak,tm_total_sepatu,tm_total,tm_admin_id,tm_keterangan,tm_user_id,tm_nama,tm_alamat,tm_no_telp)
-				VALUES ('$tm_nofak','$total_sepatu','$total','$admin_id','$keterangan','$id_member','$nama','$alamat','$no_telp')");
-		foreach ($this->cart->contents() as $item) {
-			$data = array(
-				'dtm_nofak' => $tm_nofak,
-				'dtm_paket_id' => $item['id'],
-				'dtm_paket_nama' => $item['name'],
-				'dtm_satuan' => $item['satuan'],
-				'dtm_harga' => $item['price'],
-				'dtm_qty' => $item['qty'],
-				'dtm_total' => $item['subtotal']
-			);
-			$this->db->insert('tbl_detail_transaksi_masuk',$data);
-		}
+		$this->db->query("INSERT INTO tbl_transaksi_keluar(
+				tk_nofak,tk_tm_nofak,tk_total_sepatu,tk_total,tk_jml_uang,tk_kembalian,tk_admin_id,tk_user_id,tk_nama,tk_alamat,tk_no_telp)
+				VALUES ('$tk_nofak','$tm_nofak','$total_sepatu','$total','$jml_uang','$kembalian','$admin_id','$idm','$nama','no','no')");
+
+		
+
+		$this->db->query("update tbl_transaksi_masuk set tm_status_bayar= 'sudah' where tm_nofak='$tm_nofak'");
+		
 		return true;
 
 	}

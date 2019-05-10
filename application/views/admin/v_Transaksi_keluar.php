@@ -39,7 +39,7 @@
 		<!-- Page Heading -->
 		<div class="row">			
 			<div class="col-lg-12">
-				<center>flashdata()</center>
+				<center><?php echo $this->session->flashdata('msg');?></center>
 					<h1 class="page-header">Transaksi Keluar
 						<small>!</small>
 						<a href="#" data-toggle="modal" data-target="#largeModal" class="pull-right"><small>Cari Kode Transaksi Masuk</small></a>
@@ -51,7 +51,7 @@
 		<!-- Projects Row -->
 		<div class="row">
 			<div class="col-lg-12">
-				<form action="<?php //echo base_url().'admin/transaksi_masuk/add_to_cart'?>" method="post">
+				<form action="<?php //echo base_url().'admin/transaksi_keluar/simpan_transaksi_keluar'?>" method="post">
 					<table>
 						<tr>
 							<th>Kode Transaksi Masuk</th>
@@ -135,43 +135,52 @@
 					</tbody> --> 				
 				</table>
 				
-				<form action="<?php //echo base_url().'admin/transaksi_masuk/simpan_transaksi_masuk'?>" method="post" >
+				<form action="<?php echo base_url().'admin/transaksi_keluar/simpan_transaksi_keluar'?>" method="post">
 					<table align="right">
 						<tr>
                     <!-- <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td> -->
                     <th style="width:140px;">Total Sepatu</th>
                     <th style="text-align:right;width:140px;"><input type="text" name="total_sepatu2" value="<?php echo $tm['tm_total_sepatu'];?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
-                    <input type="hidden" id="total_sepatu" name="total_sepatu" value="" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
+                    <input type="hidden" id="total_sepatu" name="total_sepatu" value="<?php echo $tm['tm_total_sepatu'];?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
                 </tr>
 						<tr>
                     <!-- <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td> -->
                     <th style="width:140px;">Total Belanja(Rp)</th>
-                    <th style="text-align:right;width:140px;"><input type="text" id="total" name="total2" value="<?php echo $tm['tm_total'];?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
-                    <input type="hidden" id="total" name="total" value="<?php echo $tm['tm_total'];?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
+                    <th style="text-align:right;width:140px;"><input type="text" id="total" name="total" value="<?php echo $tm['tm_total'];?>" class="total form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
+                    <input type="hidden" id="total2" name="total2" value="<?php echo $tm['tm_total'];?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
                 </tr>
                 <tr>
                     <th>Tunai(Rp)</th>
                     <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
                     <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
                 </tr>
+
                 
                 
                 <tr>
                     <th>Kembalian(Rp)</th>
-                    <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required ></th>  
+                    <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="kembalian form-control input-sm" style="text-align:right;margin-bottom:5px;" required ></th>  
                       
 
                 </tr>
                 
+                 <tr>
+                    <!-- <th>ID Member</th> -->
+                    <th style="text-align:right;"><input type="hidden" id="idm" name="idm" value="<?php echo $tm['tm_total'];?>" class="form-control input-sm"  placeholder="" style="margin-bottom:5px;text-align:right;" ></th>
+                   
+                </tr> 
                 <tr>
-                    <th>ID Member</th>
-                    <th style="text-align:right;"><input type="text" id="id_member" name="id_member" class="form-control input-sm"  placeholder="" style="margin-bottom:5px;text-align:right;" ></th>
+                    <th>Atas Nama</th>
+                    <th style="text-align:right;"><input type="text" id="nama" name="nama" value="<?php echo $tm['tm_nama'];?>" class="form-control input-sm"  style="margin-bottom:5px;text-align:right;" required></th>                     
+                </tr>
+
+                <tr>
+                    <!-- <th>ID Member</th> -->
+                    <th style="text-align:right;"><input type="hidden" id="tm_nofak" name="tm_nofak" value="<?php echo $tm['tm_nofak'];?>" class="form-control input-sm"  placeholder="" style="margin-bottom:5px;text-align:right;" ></th>
                    
                 </tr>
-                <tr>
-                    <th>Nama</th>
-                    <th style="text-align:right;"><input type="text" id="nama_member" name="nama_member" class="form-control input-sm"  style="margin-bottom:5px;text-align:right;" required></th>                     
-                </tr>
+
+                
                 
                 
 
@@ -363,23 +372,23 @@
         });
     </script>
 
-    <script type="text/javascript">
+         <!-- <script type="text/javascript">
         $(document).ready(function(){
-             $('#id_member').on('input',function(){
+             $('#idm').on('input',function(){
                  
                 var kode=$(this).val();
                 $.ajax({
                     type : "POST",
-                    url  : "<?php echo base_url('admin/Transaksi_keluar/get_member')?>",
+                    url  : "<?php echo base_url('admin/transaksi_masuk/get_member')?>",
                     dataType : "JSON",
                     data : {kode: kode},
                     cache:false,
                     success: function(data){
                         $.each(data,function(user_id, user_nama, user_alamat, user_no_telp){
                             //$('[name="id_member"]').val(data.user_id);
-                            $('[name="nama_member"]').val(data.user_nama);
-                            //$('[name=""]').val(data.user_alamat);
-                            //$('[name=""]').val(data.user_no_telp);
+                            $('[name="nama"]').val(data.user_nama);
+                            $('[name="alamat"]').val(data.user_alamat);
+                            $('[name="telp"]').val(data.user_no_telp);
                              
                         });
                          
@@ -389,7 +398,7 @@
            });
  
         });
-    </script>
+    </script> -->
 
     <!-- <script type="text/javascript">
         $(document).ready(function(){
