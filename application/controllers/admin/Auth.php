@@ -14,15 +14,15 @@ class Auth extends CI_Controller {
     {
    
         //form validation for field
-        $this->form_validation->set_rules('user_username','username', 'trim|required|valid_email');
-        $this->form_validation->set_rules('user_password', 'password','trim|required');
+        $this->form_validation->set_rules('admin_username','username', 'trim|required');
+        $this->form_validation->set_rules('admin_password', 'password','trim|required');
         
         if($this->form_validation->run() == false)
         {        
             $data['title'] = 'Login Page';
-            $this->load->view('auth/templates/auth_header',$data);
+            $this->load->view('auth/templates/v_auth_header',$data);
             $this->load->view('auth/v_login');
-            $this->load->view('auth/templates/auth_footer');
+            $this->load->view('auth/templates/v_auth_footer');
         } else {
             
             $this->_login();            
@@ -56,29 +56,32 @@ class Auth extends CI_Controller {
                     } else {
                         //wrong password
                         $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Password salah!</div>');
-                        redirect('auth');       
+                        redirect('admin/auth');       
                     }
                 
                 } else {
                     //if not activated
                     $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">username belum diaktivasi!</div>');
-                        redirect('auth');     
+                        redirect('admin/auth');     
                 }
 
             } else {
                 //not registered
                 $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">username tidak terdaftar!</div>');
-                redirect('auth');    
+                redirect('admin/auth');    
 
             }
         
     }
     
-    public function adminRegistrasi()
+    public function adminregistrasi()
     {
          
         $this->form_validation->set_rules('admin_nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('admin_username', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+        
+        $this->form_validation->set_rules('admin_usernama', 'Nama User', 'required|trim'); 
+        
+        $this->form_validation->set_rules('admin_email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
                                            'is_unique' => 'Email ini sudah digunakan!'
                                             ]);
         $this->form_validation->set_rules('admin_password1', 'Password', 'required|trim|min_length[3]|matches[admin_password2]',[
@@ -87,21 +90,22 @@ class Auth extends CI_Controller {
                                             ]);
         $this->form_validation->set_rules('admin_password2', 'Password', 'required|trim|matches[admin_password1]');
         
-        if( $this->form_validation->run() == false)
+        if($this->form_validation->run() == false)
         
         {             
-            $data['title'] = 'LSepatu';
-            $this->load->view('v_auth/templates/auth_header',$data) ;
-            $this->load->view('auth/registration');
-            $this->load->view('v_auth/templates/auth_footer');            
+            $data['title'] = 'LSepatu Registration';
+            $this->load->view('auth/templates/v_auth_header',$data) ;
+            $this->load->view('auth/v_registrasi');
+            $this->load->view('auth/templates/v_auth_footer');            
         } else {            
-            $email = $this->input->post('admin_username','true');
+            $email = $this->input->post('admin_email','true');
             //if according to requirement this will input data to database
             $data = [
                     'admin_tanggal' => time(),
                     'admin_nama' => htmlspecialchars($this->input->post('admin_nama',true)),
-                    'admin_username' => htmlspecialchars($email),                
+                    'admin_username' => htmlspecialchars($this->input->post('admin_username',true)),                
                     'admin_password' => password_hash($this->input->post('admin_password1'), PASSWORD_DEFAULT),
+                    'admin_email' => htmlspecialchars($email),
                     'admin_level' => 2,
                     'admin_status' => 0            
             ];
@@ -122,7 +126,7 @@ class Auth extends CI_Controller {
 
             $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
             akun berhasil dibuat, mohon aktivasi terlebih dahulu</div>');
-            redirect('auth');
+            redirect('admin/auth');
         }
         
     }

@@ -16,7 +16,7 @@
                                     
                                     <?= $this->session->flashdata('message'); ?>
                                     
-                                    <form class="user" method="post" action="<?= base_url('admin/auth');?>" >
+                                    <form class="user" method="post" action="<?= base_url('admin/auth/adminlogin/');?>" >
                                         <div class="form-group">
                                            
                                             <input type="text" class="form-control form-control-user" id="admin_username" name="admin_username"  placeholder="Username..." value="<?= set_value('email');?>">
@@ -37,7 +37,7 @@
                                         <a class="small" href="<?= base_url('admin/auth/forgotpassword'); ?>">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="<?= base_url('admin/auth/registration'); ?>">Create an Account!</a>
+                                        <a class="small" href="<?= base_url('admin/auth/adminregistrasi'); ?>">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
