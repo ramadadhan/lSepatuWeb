@@ -25,7 +25,7 @@ class Auth extends CI_Controller {
             $this->load->view('auth/templates/v_auth_footer');
         } else {
             
-            $this->_login();            
+            $this->_adminLogin();            
         }                        
     }
     
@@ -56,19 +56,19 @@ class Auth extends CI_Controller {
                     } else {
                         //wrong password
                         $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Password salah!</div>');
-                        redirect('admin/auth');       
+                        redirect('auth');       
                     }
                 
                 } else {
                     //if not activated
                     $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">username belum diaktivasi!</div>');
-                        redirect('admin/auth');     
+                        redirect('auth');     
                 }
 
             } else {
                 //not registered
                 $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">username tidak terdaftar!</div>');
-                redirect('admin/auth');    
+                redirect('auth');    
 
             }
         
@@ -126,7 +126,7 @@ class Auth extends CI_Controller {
 
             $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
             akun berhasil dibuat, mohon aktivasi terlebih dahulu</div>');
-            redirect('admin/auth');
+            redirect('auth');
         }
         
     }
