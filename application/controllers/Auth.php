@@ -32,10 +32,10 @@ class Auth extends CI_Controller {
     private function _adminLogin()
     {   
         //admin var
-        $username = $this->input->post('admin_username');
-        $password = $this->input->post('admin_password');
+        $admin_username = $this->input->post('admin_username');
+        $admin_password = $this->input->post('admin_password');
                         
-        $admin = $this->M_auth->adminLogin;
+        $admin = $this->m_auth->adminLogin;
         
         if($admin){
             
