@@ -54,21 +54,25 @@ class Transaksi_keluar extends CI_Controller{
 		$tk_nofak=$this->m_penjualan->get_tk_nofak();
 		$this->session->set_userdata('tk_nofak',$tk_nofak);
 
-		$order_proses=$this->m_penjualan->simpan_transaksi_keluar($tk_nofak,$tm_nofak,$total_sepatu,$total,$jml_uang,$kembalian,$idm,$nama);
-		if(!empty($jml_uang)) {
-			if ($jml_uang < $total) {
+		
+		if(empty($jml_uang)) {
+			if ($jml_uang > $total) {
 				echo $this->session->set_flashdata('msg','<label class="label label-danger">Jumlah Uang yang anda masukan Kurang</label>');
 				redirect('admin/transaksi_keluar');
-			}
-		}
-		if($order_proses){
+			} else {
+				$order_proses=$this->m_penjualan->simpan_transaksi_keluar($tk_nofak,$tm_nofak,$total_sepatu,$total,$jml_uang,$kembalian,$idm,$nama);
 			
 			//$this->load->view('admin/alert/alert_sukses');
 			redirect('admin/transaksi_keluar');
-		} else {
+		} 
+			} else {
+				redirect('admin/transaksi_keluar');
+			}
+		
+			
 
-			redirect('admin/transaksi_keluar');
-		}
+		
+		
 
 
 
