@@ -15,6 +15,6 @@ class Auth_model extends CI_Controller {
     
     public function adminLogin()
     {
-        $this->db->get_where('tbl_admin',['user_username' =>$username])->row_array();
+        $this->db->get_where('tbl_admin',['admin_username' =>$admin_username])->row_array();
     }
 }
