@@ -68,8 +68,8 @@ body {
 		<div id="myNav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <div class="overlay-content">
-                <a  src="<?php echo base_url().'#'?>">Data Admin</a>
-                <a href="#">Data Member</a>
+                <a href="<?php base_url()?>user_admin">Data Admin</a>
+                <a href="<?php base_url()?>user_member">Data Member</a>
                 <a href="<?php base_url()?>data_paket">Data Paket</a>
                 <a href="<?php base_url()?>data_pengeluaran">Data Pengeluaran</a>
             </div>

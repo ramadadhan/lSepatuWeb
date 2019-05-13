@@ -25,7 +25,23 @@ class M_paket extends CI_Model{
 	function get_paket($kopak){
 		$hsl=$this->db->query("SELECT * FROM tbl_paket WHERE paket_id ='$kopak'");
 		return $hsl;
-	}  
+    }  
+    
+    function get_paket_id(){
+		$q = $this->db->query("SELECT MAX(RIGHT(paket_id,4)) AS kd_max FROM tbl_paket");
+        $kd = "";
+        $tm = "PK";
+        if($q->num_rows()>0){
+            foreach($q->result() as $k){
+            	
+                $tmp = ((int)$k->kd_max)+1;
+                $kd = sprintf("%04s", $tmp );
+            }
+        }else{
+            $kd = "01";
+        }
+        return $tm.$kd;
+	}
 
 	function get_member($idmember){
 		$hsl=$this->db->query("SELECT * FROM tbl_user WHERE user_id ='$idmember'");

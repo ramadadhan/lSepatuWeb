@@ -14,6 +14,7 @@ function get_member($idmember) {
         }
         return $hasil;
 }
+
 function get_tm_nofak(){
 		$q = $this->db->query("SELECT MAX(RIGHT(tm_nofak,4)) AS kd_max FROM tbl_transaksi_masuk WHERE DATE(tm_tanggal)=CURDATE()");
         $kd = "";

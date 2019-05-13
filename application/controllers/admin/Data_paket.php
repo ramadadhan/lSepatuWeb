@@ -28,6 +28,8 @@
                 'paket_satuan' => $paket_satuan,
                 'paket_harga' => $paket_harga
                 );
+           
+            $paket_id=$this->m_paket->get_paket_id();    
             $this->m_paket->input_data($data,'tbl_paket');
             redirect('admin/data_paket/index');
         }
@@ -35,6 +37,7 @@
         function hapus($paket_id){
             $where = array('paket_id' => $paket_id);
             $this->m_paket->hapus_data($where,'tbl_paket');
+            $data['tbl_paket'] = $this->m_paket->hapus_data($where,'tbl_paket')->result();
             redirect('admin/data_paket/index');
         }
 
