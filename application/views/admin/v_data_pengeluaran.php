@@ -39,7 +39,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Data Pengeluaran</h1>
-			
+			<?php echo anchor('admin/data_pengeluaran/tambah','Tambah Data'); ?>	
 		</div>
 		
 	</div>

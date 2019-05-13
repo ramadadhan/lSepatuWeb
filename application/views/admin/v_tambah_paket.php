@@ -8,7 +8,7 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="description" content="Produk By instagram.com/farhan_rizal_h/">
 	<meta name="author" content="Farhan Rizal Hidayat">
-	<title>Data Paket</title>
+	
 
 
 	<!-- Bootstrap Core CSS -->
@@ -22,81 +22,49 @@
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>"> 
     
+	<title>Tambah Paket</title>
 </head>
+
 <?php 
         $this->load->view('admin/navbar');
    ?>
 
 <ol class="breadcrumb">
   <li><a href="#">Dashboard</a></li>
-  <li class="active">Data Paket</li>
+  <li><a href="#">Data Paket</a></li>
+  <li class="active">Tambah Paket</li>
 </ol>
 
-
 <body>
-
-<!-- page content -->
-<div class="container">
-	<!-- page heading -->
-	<div class="row">
-		<div class="col-lg-12">
-            <h1 class="page-header">Data Paket</h1>
-			<?php echo anchor('admin/data_paket/tambah','Tambah Data'); ?>	
-        
-		</div>
-		
-	</div>
 	
-    <div class="mainbody-section text-center">
+	<center>
+		<h1></h1>
+		<h3>Tambah data baru</h3>
+	</center>
 
-        <div class="row">
-            
-                <div class="section">
-                <div class="table-responsive">
-                    <table  class="table table-bordered" style="font-size:13px;margin-top:10px;">
-                        <thead>
-                            <tr>
-                                <th style="text-align:center;">No</th>
-                                <th style="text-align:center;">ID Paket</th>
-                                <th style="text-align:center;">Nama paket</th>
-                                <th style="text-align:center;">Satuan</th>
-                                <th style="text-align:center;">Harga(Rp)</th>
-                                <th>Aksi</th>             	         	
-                            </tr>
-                        </thead>
-                        <?php 
-                                $no = 1;
-                                foreach($paket as $p){ 
-                                ?>
-                                <tr>
-                                    <td style="text-align:center;"><?php echo $no++ ?></td>
-                                    <td><?php echo $p->paket_id ?></td>
-                                    <td><?php echo $p->paket_nama ?></td>
-                                    <td><?php echo $p->paket_satuan ?></td>
-                                    <td><?php echo $p->paket_harga ?></td>
-                                    <td>
-                                        <?php echo anchor('admin/data_paket/edit/'.$p->paket_id,'Edit'); ?>
-                                        <?php echo anchor('admin/data_paket/hapus/'.$p->paket_id,'Hapus'); ?>
-                                    </td>
-                                </tr>
-                                <?php } ?>
-
-                    </table>
-                </div>
-            </div>  
-
-        </div>
-        
-    </div>
-</div>
+	<form action="<?php echo base_url(). 'admin/data_paket/tambah_aksi'; ?>" method="post">
+		<table style="margin:20px auto;">
+			<tr>
+				<td>Nama Paket</td>
+				<td><input type="text" name="paket_nama"></td>
+			</tr>
+			<tr>
+				<td>Satuan</td>
+				<td><input type="text" name="paket_satuan"></td>
+			</tr>
+			<tr>
+				<td>Harga</td>
+				<td><input type="text" name="paket_harga"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Tambah"></td>
+			</tr>
+		</table>
+	</form>	
 
 
-
-
-
-
-
-<!-- jQuery -->
+	<!-- jQuery -->
     <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script> 
 
     <!-- Bootstrap Core JavaScript -->
@@ -112,4 +80,3 @@
 
 </body>
 </html>
-
