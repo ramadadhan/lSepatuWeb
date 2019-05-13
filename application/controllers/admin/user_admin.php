@@ -11,11 +11,11 @@ class user_Admin extends CI_Controller{
  
 	function index(){
 		$data['tbl_admin'] = $this->m_admin->tampil_data()->result();
-		$this->load->view('v_admin/v_tampil',$data);
+		$this->load->view('admin/v_admin/v_tampil',$data);
     }
     
     function tambah(){
-		$this->load->view('v_admin/v_input');
+		$this->load->view('admin/v_admin/v_input');
     }
     
     function tambah_aksi(){
@@ -33,19 +33,19 @@ class user_Admin extends CI_Controller{
             'admin_status' => $status
 			);
 		$this->m_admin->input_data($data,'tbl_admin');
-		redirect('admin/index');
+		redirect('admin/user_admin/index');
     }
     
     function hapus($admin_id){
 		$where = array('admin_id' => $admin_id);
 		$this->m_admin->hapus_data($where,'tbl_admin');
-		redirect('admin/index');
+		redirect('admin/user_admin/index');
     }
     
     function edit($admin_id){
 		$where = array('admin_id' => $admin_id);
 		$data['tbl_admin'] = $this->m_admin->edit_data($where,'tbl_admin')->result();
-		$this->load->view('v_admin/v_edit',$data);
+		$this->load->view('admin/v_admin/v_edit',$data);
     }
     
     function update(){
@@ -70,7 +70,7 @@ class user_Admin extends CI_Controller{
         );
     
         $this->m_admin->update_data($where,$data,'tbl_admin');
-        redirect('admin/index');
+        redirect('admin/user_admin/index');
     }
     function logout(){
       $this->session->sess_destroy();
