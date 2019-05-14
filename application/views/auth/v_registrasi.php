@@ -9,7 +9,7 @@
                   <h1 class="h4 text-gray-900 mb-4">Registrasi Akun</h1>
               </div>
 
-              <form class="tbl_admin" method="post" action="<?= base_url('Auth/adminregistrasi'); ?>">
+              <form class="user" method="post" action="<?= base_url('Auth/adminregistrasi'); ?>">
 
                   <div class="form-group row">
                   </div>
@@ -18,13 +18,6 @@
                       <input type="text" class="form-control form-control-user" id="admin_nama" name="admin_nama" placeholder="Full Name" value="<?= set_value('admin_nama'); ?>">
                       <!--to set form error in midle position-->
                       <?= form_error('admin_nama','<small class="text-danger ml-3">','</small>'); ?>
-                  </div>
-
-                  <div class="form-group">
-                      <!--add set value to repopulating the form for user which input wrong format on form-->
-                      <input type="text" class="form-control form-control-user" id="admin_username" name="admin_username" placeholder="Username" value="<?= set_value('admin_username'); ?>">
-                      <!--to set form error in midle position-->
-                      <?= form_error('admin_username','<small class="text-danger ml-3">','</small>'); ?>
                   </div>
 
                   <div class="form-group">
@@ -49,7 +42,6 @@
                       Register Account
                   </button>
               </form>
-
               <hr>
 
               <div class="text-center">

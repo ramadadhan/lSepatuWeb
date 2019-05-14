@@ -79,8 +79,7 @@ class Auth extends CI_Controller {
     {
         //full name
         $this->form_validation->set_rules('admin_nama', 'Fullname', 'required|trim');
-        //username
-        $this->form_validation->set_rules('admin_username', 'Username', 'required|trim');
+
         //email
         $this->form_validation->set_rules('admin_email', 'Email', 'required|trim|valid_email|is_unique[tbl_admin.admin_email]', [
                                            'is_unique' => 'Email ini sudah digunakan!'
@@ -106,19 +105,19 @@ class Auth extends CI_Controller {
 
               $this->M_auth->adminRegistrasi();
               // $this->load->model('M_auth','adminRegistrasi');
-
+              // $admin_email = $this->input->post('admin_email','true');
               // $token = base64_encode(random_bytes(32));
               // $tbl_token = [
               //
-              //     'tk_username' => $admin_username,
+              //     'tk_email' => $admin_email,
               //     'tk_token' => $token,
-              //     'tk_date' => time()
+              //     'tk_time' => time()
               //     //date created limit or time for expired email verification
               // ];
 
               //query to insert token to db
               $this->M_auth->insertToken();
-
+              // $this->db->insert('tbl_token',$tbl_token);
               // $this->load->model('M_auth','insertToken');
 
               // $this->m_auth->insertToken('tbl_token',$tbl_token);
@@ -153,8 +152,8 @@ class Auth extends CI_Controller {
 
       if($type == 'verify') {
         $this->email->subject('Verifikasi Akun');
-        $this->email->message('Click link berikut untuk aktivasi akun anda: <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('admin_email')
-        . '&token=' . urlencode($token) . '">Aktivasi Account</a>');
+        $this->email->message('Click link berikut untuk aktivasi akun anda: <a href="' . base_url() . 'auth/verify?admin_email=' . $this->input->post('admin_email')
+        . '&tk_token=' . urlencode($token) . '">Aktivasi Account</a>');
           } else {
             $this->email->subject('Reset Password');
             $this->email->message('Click link berikut untuk reset password anda: <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('admin_email')
@@ -166,37 +165,40 @@ class Auth extends CI_Controller {
         return true;
         } else {
           echo $this->email->print_debugger();
-          die;
+           die;
       }
 
     }
 
     public function verify()
     {
-      $admin_username = $this->input->get('admin_username');
+      //get from link activation
+      $email = $this->input->get('admin_email');
       $token = $this->input->get('tk_token');
 
-      $admin = $this->db->get_where('tbl_admin',['admin_username' => $admin_username])->row_array();
+      $admin = $this->db->get_where('tbl_admin',['admin_email' => $email])->row_array();
 
       if($admin){
-            $tbl_token = $this->tb->get_where('tbl_token', ['tk_token' => $token])->row_array();
+            $tbl_token = $this->db->get_where('tbl_token', ['tk_token' => $token])->row_array();
+
             if($tbl_token) {
-                if(time() - $tbl_token['tk_date'] < ('60*60*24')) {
+
+                if(time() - $tbl_token['tk_time'] < ('60*60*24')) {
                     $this->db->set('admin_status',1);
-                    $this->db->where('admin_username',$admin_username);
+                    $this->db->where('admin_email',$email);
                     $this->db->update('tbl_admin');
 
-                    $this->db->delete('tbl_token',['tk_username' =>$token]);
+                    $this->db->delete('tbl_token',['tk_email' =>$token]);
                     $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">'. $admin_username . '
                     telah di aktivasi. silahkan login</div>');
                     redirect('auth');
 
                     } else {
                       //token expired
-                        $this->db->delete('tbl_admin',['admin_username' => $admin_username]);
-                        $this->db->delete('tbl_token',['tk_username' => $token]);
+                        $this->db->delete('tbl_admin',['admin_email' => $email]);
+                        $this->db->delete('tbl_token',['tk_email' => $token]);
 
-                        $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Aktivasi akun gagal!, token kadaluarsa</div>');
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal!, token kadaluarsa</div>');
                       }
 
                 } else {
@@ -206,7 +208,7 @@ class Auth extends CI_Controller {
                }
 
           } else {
-          $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun anda gagal! username salah</div>');
+          $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun anda gagal! akun salah</div>');
           redirect('auth');
         }
 
