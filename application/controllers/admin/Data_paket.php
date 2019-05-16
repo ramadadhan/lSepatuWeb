@@ -29,7 +29,9 @@
                 'paket_harga' => $paket_harga
                 );
            
-            $paket_id=$this->m_paket->get_paket_id();    
+            $paket_id=$this->m_paket->get_paket_id();
+            $this->session->set_userdata('paket_id',$paket_id);
+               
             $this->m_paket->input_data($data,'tbl_paket');
             redirect('admin/data_paket/index');
         }

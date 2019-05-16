@@ -1,17 +1,19 @@
 <?php 
 
     class Data_pengeluaran extends CI_Controller{
-       
+        function __construct(){
+            parent::__construct();
+               
+            $this->load->model('m_pengeluaran');
+                $this->load->helper('url');
+            }
     
     
         function index () {
-
-            $this->load->model('m_pengeluaran');
             $data['pengeluaran'] = $this->m_pengeluaran->tampil_paket()->result();    
             $this->load->view('admin/v_data_pengeluaran', $data);
         }
 
-        
         function tambah(){
             $this->load->view('v_input');
         }
