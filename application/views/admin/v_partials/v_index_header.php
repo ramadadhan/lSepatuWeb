@@ -10,7 +10,9 @@
     <meta name="description" content="Produk By instagram.com/farhan_rizal_h/">
     <meta name="author" content="Farhan Rizal Hidayat">
     <title>Index</title>
-
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
@@ -23,10 +25,11 @@
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
 
+
+
 </head>
 
 <style>
-    
     body {
         font-family: 'Lato', sans-serif;
     }
@@ -93,7 +96,19 @@
             transition: margin-left .5s;
             padding: 16px;
         }
+
+        #page-header {
+         padding-bottom: 9px;
+         margin: -20px 0 20px;
+         border-bottom: 1px solid #eee;
+        	}
+
+}
+
+
     }
 
+
 </style>
+
 <body>
