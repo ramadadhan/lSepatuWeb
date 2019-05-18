@@ -13,13 +13,16 @@ class Auth extends CI_Controller {
 
     public function index()
     {
+          if($this->session->userdata('admin_email')){
+          redirect('Administrator');
+        }
         //form validation for field
         $this->form_validation->set_rules('admin_email','email', 'trim|required|valid_email');
         $this->form_validation->set_rules('admin_password', 'password','trim|required');
 
-        if($this->form_validation->run() == false)
+        if( $this->form_validation->run() == false )
         {
-            $data['title'] = 'Login Page';
+            $data['title'] = 'Halaman Login';
             $this->load->view('auth/v_partials/v_auth_header',$data);
             $this->load->view('auth/v_login');
             $this->load->view('auth/v_partials/v_auth_footer');
@@ -47,15 +50,15 @@ class Auth extends CI_Controller {
                         'admin_level' => $admin['admin_level']
                     ];
                     $this->session->set_userdata($data);
-                        if($admin['admin_level'] == 1){
-                            redirect('Administrator');
+                        if($admin['admin_level'] == 1) {
+                            redirect('Owner');
+
                             } else {
-                                echo $this->print_debugger();
-                                die;
+
+                            redirect('pegawai');
                         }
 
                     } else {
-
                         //wrong password
                         $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Password salah!</div>');
                         redirect('auth');
@@ -78,6 +81,10 @@ class Auth extends CI_Controller {
 
     public function adminRegistrasi()
     {
+          if($this->session->userdata('admin_email')){
+          redirect('Administrator');
+        }
+
         //full name
         $this->form_validation->set_rules('admin_nama', 'Fullname', 'required|trim');
 
@@ -93,8 +100,6 @@ class Auth extends CI_Controller {
         //p2
         $this->form_validation->set_rules('admin_password2', 'Password', 'required|trim|matches[admin_password1]');
 
-
-
           if($this->form_validation->run() == false)
 
           {
@@ -102,8 +107,8 @@ class Auth extends CI_Controller {
               $this->load->view('auth/templates/v_auth_header',$data) ;
               $this->load->view('auth/v_registrasi');
               $this->load->view('auth/templates/v_auth_footer');
-          } else {
 
+          } else {
               $this->M_auth->adminRegistrasi();
 
               $admin_email = $this->input->post('admin_email','true');
@@ -149,19 +154,23 @@ class Auth extends CI_Controller {
         $this->email->subject('Verifikasi Akun');
         $this->email->message('Click link berikut untuk aktivasi akun anda: <a href="' . base_url() . 'auth/verify?admin_email=' . $this->input->post('admin_email')
         . '&tk_token=' . urlencode($token) . '">Aktivasi Account</a>');
+
           } else {
             $this->email->subject('Reset Password');
             $this->email->message('Click link berikut untuk reset password anda: <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('admin_email')
             . '&token=' . urlencode($token) . '">Reset Password</a> ');
+          }
+
+        //debugging Email
+        if($this->email->send()){
+            return true;
+
+        } else {
+
+            echo $this->email->print_debugger();
+            die;
         }
 
-      //debugging Email
-      if($this->email->send()){
-        return true;
-        } else {
-          echo $this->email->print_debugger();
-           die;
-      }
 
     }
 
@@ -177,8 +186,8 @@ class Auth extends CI_Controller {
             $tbl_token = $this->db->get_where('tbl_token', ['tk_token' => $token])->row_array();
 
             if($tbl_token) {
-
                 if(time() - $tbl_token['tk_time'] < ('60*60*24')) {
+
                     $this->db->set('admin_status',1);
                     $this->db->where('admin_email',$admin_email);
                     $this->db->update('tbl_admin');
@@ -220,18 +229,106 @@ class Auth extends CI_Controller {
       redirect('auth');
     }
 
+    public function blocked()
+    {
+        $this->load->view('auth/blocked');
+    }
+
     public function forgotPassword()
     {
       $this->form_validation->set_rules('admin_email','Email', 'trim|required|valid_email');
 
       if ($this->form_validation->run() == false ) {
-          $data['title'] = 'Forgot Password';
-          // $this->load->view('v_partials/v_auth_header');
-          $this->load->view('admin/auth/');
+          $data['title'] = 'Lupa Password';
+          $this->load->view('auth/v_partials/v_auth_header',$data);
+          $this->load->view('auth/v_forgotpass');
+          $this->load->view('auth/v_partials/v_auth_footer');
+
+      } else {
+
+          $admin_email = $this->input->post('admin_email');
+          $admin = $this->db->get_where('tbl_admin',['admin_email' => $admin_email, 'admin_status' => 1])->row_array();
+
+          if($admin){
+              $token =  base64_encode(random_bytes(32));
+              $tbl_token = [
+                  'tk_email' => $admin_email,
+                  'tk_token' => $token,
+                  'tk_time' => time()
+              ];
+
+              $this->db->insert('tbl_token',$tbl_token);
+              $this->_sendEmail($token,'forgot');
+
+              $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Periksa email untuk reset password</div>');
+              redirect('auth/forgotPassword');
+
+              } else {
+                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Email/User tidak teregistrasi!</div>');
+                redirect('auth/forgotPassword');
+
+          }
       }
     }
 
 
+    public function resetPassword()
+    {
+      $admin_email =  $this->input->get('admin_email');
+      $token = $this->input->get('tk_token');
+
+      $admin = $this->db->get_where('tbl_admin',['admin_emai' => $admin_email])->row_array();
+
+      if($admin) {
+
+          $tbl_token = $this->db->get_where('tbl_token',['tk_username' => $token])->row_array();
+          if($tbl_token) {
+              $this->session->set_userdata('reset_email',$admin_email);
+              $this->changePassword();
+
+                } else {
+                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Reset Password Gagal!token salah</div>');
+                redirect('auth/forgotPassword');
+                }
+
+      } else {
+        $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Reset Password Gagal!Email/User tidak salah</div>');
+        redirect('auth/forgotPassword');
+      }
+
+    }
+
+    public function changePassword()
+    {
+
+      if(!$this->session->userdata('reset_email')) {
+        redirect('auth');
+      }
+
+      $this->form_validation->set_rules('admin_password1','Password','trim|required|min_length[4]|matches[admin_password2]');
+      $this->form_validation->set_rules('admin_password1','Password','trim|required|min_length[4]|matches[admin_password1]');
+
+      if($this->form_validation->run() == false ) {
+          $data['title'] = 'Ubah Password';
+          $this->load->view('auth/v_partials/v_auth_header');
+          $this->load->view('auth//v_auth_header');
+          $this->load->view('auth/v_partials/v_auth_header');
+
+      } else {
+          $admin_password = password_hash($this->input(admin_password1), PASSWORD_DEFAULT);
+          $admin_email = $this->session->userdata('reset_email');
+
+          $this->db->set('admin_password',$admin_password);
+          $this->db->where('admin_email',$admin_email);
+          $this->db->update('tbl_admin');
+
+          $this->session->unset_userdata('reset_email');
+          $this->session->flashdata('message','<div class="alert alert-success" role="alert">Password telah diubah! Silahkan Login</div>');
+          redirect('auth');
+      }
+
+
+    }
 
 
 

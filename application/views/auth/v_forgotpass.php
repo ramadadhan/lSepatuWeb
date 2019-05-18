@@ -11,16 +11,16 @@
                        <div class="col-lg">
                            <div class="p-5">
                                <div class="text-center">
-                                   <h1 class="h4 text-gray-900 mb-4">Forgot your password ?</h1>
+                                   <h1 class="h4 text-gray-900 mb-4"><?= $title; ?></h1>
                                </div>
 
                                <?= $this->session->flashdata('message'); ?>
 
-                               <form class="user" method="post" action="<?= base_url('auth/forgotpassword');?>" >
+                               <form class="user" method="post" action="<?= base_url('auth/forgotPassword');?>" >
                                    <div class="form-group">
                                        <!--type for emai is just enter on text because later that will validated by code igniter-->
                                        <!--add set value to repopulating the form for user which input wrong format on form-->
-                                       <input type="text" class="form-control form-control-user" id="admin_email" name="admin_email"  placeholder="Enter Email Address..." value="<?= set_value('admin_email');?>">
+                                       <input type="text" class="form-control form-control-user" id="admin_email" name="admin_email"  placeholder="Masukkan Email..." value="<?= set_value('admin_email');?>">
 
                                        <?= form_error('email','<small class="text-danger ml-3">','</small>'); ?>
                                    </div>
