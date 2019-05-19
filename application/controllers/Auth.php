@@ -14,7 +14,7 @@ class Auth extends CI_Controller {
     public function index()
     {
           if($this->session->userdata('admin_email')){
-          redirect('Administrator');
+          redirect('Pegawai');
         }
         //form validation for field
         $this->form_validation->set_rules('admin_email','email', 'trim|required|valid_email');
@@ -82,8 +82,8 @@ class Auth extends CI_Controller {
     public function adminRegistrasi()
     {
           if($this->session->userdata('admin_email')){
-          redirect('Administrator');
-        }
+          redirect('Pegawai');
+          }
 
         //full name
         $this->form_validation->set_rules('admin_nama', 'Fullname', 'required|trim');

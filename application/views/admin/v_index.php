@@ -58,7 +58,7 @@
                         <div class="col-md-3 portfolio-item">
                             <div class="menu-item blue" style="height:150px;">
                                 <a href="" data-toggle="modal">
-                                    <i class="fa fa-cart-arrow-down"></i>
+                                <i class="fa fa-list" aria-hidden="true"></i>
                                     <p style="text-align:left;font-size:14px;padding-left:5px;">Data Paket</p>
                                 </a>
                             </div>
@@ -67,7 +67,7 @@
                         <div class="col-md-3 portfolio-item">
                             <div class="menu-item blue" style="height:150px;">
                                 <a href="" data-toggle="modal">
-                                    <i class="fa fa-cart-arrow-down"></i>
+                                  <i class="fa fa-user" aria-hidden="true"></i>
                                     <p style="text-align:left;font-size:14px;padding-left:5px;">Data Admin</p>
                                 </a>
                             </div>
@@ -76,7 +76,7 @@
                         <div class="col-md-3 portfolio-item">
                             <div class="menu-item blue" style="height:150px;">
                                 <a href="" data-toggle="modal">
-                                    <i class="fa fa-cart-plus"></i>
+                                    <i class="fa fa-users" aria-hidden="true"></i>
                                     <p style="text-align:left;font-size:14px;padding-left:5px;">Data User</p>
                                 </a>
                             </div>
@@ -85,7 +85,7 @@
                         <div class="col-md-3 portfolio-item">
                             <div class="menu-item blue" style="height:150px;">
                                 <a href="" data-toggle="modal">
-                                    <i class="fa fa-cart-plus"></i>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     <p style="text-align:left;font-size:14px;padding-left:5px;">Data Pengeluaran</p>
                                 </a>
                             </div>
@@ -94,12 +94,12 @@
                         <div class="col-md-3 portfolio-item">
                             <div class="menu-item blue" style="height:150px;">
                                 <a href="" data-toggle="modal">
-                                    <i class="fa fa-cart-plus"></i>
+                                    <i class="fa fa-list-ol" aria-hidden="true"></i>
                                     <p style="text-align:left;font-size:14px;padding-left:5px;">Laporan</p>
                                 </a>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
