@@ -100,6 +100,24 @@
                             </div>
                         </div>
 
+                        <div class="col-md-3 portfolio-item">
+                            <div class="menu-item blue" style="height:150px;">
+                                <a href="" data-toggle="modal">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    <p style="text-align:left;font-size:14px;padding-left:5px;">Registrasi</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 portfolio-item">
+                            <div class="menu-item blue" style="height:150px;">
+                                <a href="" data-toggle="modal">
+                                    <i class="fa fa-street-view" aria-hidden="true"></i>
+                                    <p style="text-align:left;font-size:14px;padding-left:5px;">Profil</p>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

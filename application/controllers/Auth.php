@@ -66,13 +66,13 @@ class Auth extends CI_Controller {
 
                 } else {
                     //if not activated
-                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">username belum diaktivasi!</div>');
+                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">User belum diaktivasi!</div>');
                         redirect('auth');
                 }
 
             } else {
                 //not registered
-                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">username tidak terdaftar!</div>');
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">User tidak terdaftar!</div>');
                 redirect('auth');
 
             }
@@ -104,9 +104,9 @@ class Auth extends CI_Controller {
 
           {
               $data['title'] = 'LSepatu Registration';
-              $this->load->view('auth/templates/v_auth_header',$data) ;
+              $this->load->view('auth/v_partials/v_auth_header',$data) ;
               $this->load->view('auth/v_registrasi');
-              $this->load->view('auth/templates/v_auth_footer');
+              $this->load->view('auth/v_partials/v_auth_footer');
 
           } else {
               $this->M_auth->adminRegistrasi();
@@ -193,7 +193,7 @@ class Auth extends CI_Controller {
                     $this->db->update('tbl_admin');
 
                     $this->db->delete('tbl_token',['tk_email' =>$token]);
-                    $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">'. $admin_username . '
+                    $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">'. $admin_email . '
                     telah di aktivasi. silahkan login</div>');
                     redirect('auth');
 
@@ -225,7 +225,7 @@ class Auth extends CI_Controller {
       $this->session->unset_userdata('admin_email');
       $this->session->unset_userdata('admin_level');
 
-      $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">logout berhasil</div>');
+      $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Logout berhasil</div>');
       redirect('auth');
     }
 
@@ -245,7 +245,6 @@ class Auth extends CI_Controller {
           $this->load->view('auth/v_partials/v_auth_footer');
 
       } else {
-
           $admin_email = $this->input->post('admin_email');
           $admin = $this->db->get_where('tbl_admin',['admin_email' => $admin_email, 'admin_status' => 1])->row_array();
 
@@ -274,14 +273,14 @@ class Auth extends CI_Controller {
 
     public function resetPassword()
     {
-      $admin_email =  $this->input->get('admin_email');
-      $token = $this->input->get('tk_token');
+      $admin_email =  $this->input->get('email');
+      $token = $this->input->get('token');
 
-      $admin = $this->db->get_where('tbl_admin',['admin_emai' => $admin_email])->row_array();
+      $admin = $this->db->get_where('tbl_admin',['admin_email' => $admin_email])->row_array();
 
       if($admin) {
+          $tbl_token = $this->db->get_where('tbl_token',['tk_token' => $token])->row_array();
 
-          $tbl_token = $this->db->get_where('tbl_token',['tk_username' => $token])->row_array();
           if($tbl_token) {
               $this->session->set_userdata('reset_email',$admin_email);
               $this->changePassword();
@@ -292,7 +291,7 @@ class Auth extends CI_Controller {
                 }
 
       } else {
-        $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Reset Password Gagal!Email/User tidak salah</div>');
+        $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Reset Password Gagal! Email/User salah</div>');
         redirect('auth/forgotPassword');
       }
 
@@ -306,16 +305,16 @@ class Auth extends CI_Controller {
       }
 
       $this->form_validation->set_rules('admin_password1','Password','trim|required|min_length[4]|matches[admin_password2]');
-      $this->form_validation->set_rules('admin_password1','Password','trim|required|min_length[4]|matches[admin_password1]');
+      $this->form_validation->set_rules('admin_password2','Password','trim|required|min_length[4]|matches[admin_password1]');
 
       if($this->form_validation->run() == false ) {
           $data['title'] = 'Ubah Password';
-          $this->load->view('auth/v_partials/v_auth_header');
-          $this->load->view('auth//v_auth_header');
+          $this->load->view('auth/v_partials/v_auth_header',$data);
+          $this->load->view('auth/v_changepass');
           $this->load->view('auth/v_partials/v_auth_header');
 
       } else {
-          $admin_password = password_hash($this->input(admin_password1), PASSWORD_DEFAULT);
+          $admin_password = password_hash($this->input->post('admin_password1'), PASSWORD_DEFAULT);
           $admin_email = $this->session->userdata('reset_email');
 
           $this->db->set('admin_password',$admin_password);
@@ -323,7 +322,7 @@ class Auth extends CI_Controller {
           $this->db->update('tbl_admin');
 
           $this->session->unset_userdata('reset_email');
-          $this->session->flashdata('message','<div class="alert alert-success" role="alert">Password telah diubah! Silahkan Login</div>');
+          $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Password telah diubah! Silahkan Login!</div>');
           redirect('auth');
       }
 
