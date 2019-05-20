@@ -2,22 +2,25 @@
 
 class Transaksi_masuk extends CI_Controller{
 	function __construct(){
-		parent::__construct();
-
-		
-		$this->load->model('m_paket');
-	
+		parent::__construct();		
+		$this->load->model('m_paket');	
 		$this->load->model('m_penjualan');
 	}
 
-
 	function index () {
-
 		$data['data'] = $this->m_paket->tampil_paket();
 		$this->load->view('admin/v_Transaksi_masuk',$data);
 		//$this->load->view('admin/v_Transaksi_masuk');
 
 	}
+
+	function get_barang(){
+        $kode=$this->input->post('kode');
+        $data=$this->m_paket->get_data_barang_bykode($kode);
+        echo json_encode($data);
+    }
+
+
 	function get_paket() {
 
 		$kopak=$this->input->post('kode_paket');
@@ -25,6 +28,12 @@ class Transaksi_masuk extends CI_Controller{
 		$this->load->view('admin/v_detail_paket',$x);
 
 	}
+
+	function get_member(){
+        $idmember=$this->input->post('kode');
+		$data=$this->m_penjualan->get_member($idmember);
+		echo json_encode($data);
+    }
 
 	function add_to_cart(){
 
@@ -35,50 +44,23 @@ class Transaksi_masuk extends CI_Controller{
 				'id'       => $i['paket_id'],
       		  	'name'     => $i['paket_nama'],
                	'satuan'   => $i['paket_satuan'],
-	           'price'   => $i['paket_harga'],
-	           //'price'    => str_replace(",", "", $this->input->post('paket_harga')),
-	         
+	           'price'   => $i['paket_harga'],	           	         
 	           'qty'      => $this->input->post('qty'),
-	          // 'amount'	  => str_replace(",", "", $this->input->post('paket_harga'))
-	           //'amount'	  =>$i['paket_harga']
+	          
 		);
 
-		// if( !empty($this->cart->total_items()) ){
-		// 	foreach ($this->cart->contents() as $items){
-		// 		$items['id'];
-		// 		$qtylama=$items['qty'];
-		// 		$rowid=$items['rowid'];
-		// 		$kopak=$this->input->post('kode_paket');
-		// 		$qty=$this->input->post('qty');
-		// 		if($id==$kopak){
-		// 			$up=array(
-		// 				'rowid'=> $rowid,
-		// 				'qty'=>$qtylama+$qty
-		// 				);
-		// 		$this->cart->update($up);
-		// 	}else{
-		// 		$this->cart->insert($data);
-		// 	}
-		// 	}
-
-		// } else { 
-		// 	$this->cart->insert($data);
-		// }
+		
 		$this->cart->insert($data);
 		redirect('admin/transaksi_masuk');
 	}
-	function remove(){
-	
+	function remove(){	
 		$row_id=$this->uri->segment(4);
 		$this->cart->update(array(
                'rowid'      => $row_id,
                'qty'     => 0
             ));
-		redirect('admin/transaksi_masuk');
-	
-        
-    
-	}
+		redirect('admin/transaksi_masuk');    
+    }
 
 	function simpan_transaksi_masuk () {
 		$total=$this->input->post('total');
