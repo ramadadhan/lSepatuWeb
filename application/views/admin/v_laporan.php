@@ -4,7 +4,7 @@
 <head>
 	<title>Laporan</title>
     
-    <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui1/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
     <script src="<?php echo base_url('assets/jquery.min.js'); ?>"></script> <!-- Load file jquery -->
 </head>
 <body>
