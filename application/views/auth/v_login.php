@@ -19,8 +19,8 @@
                                     <form class="user" method="post" action="<?= base_url('auth');?>" >
                                         <div class="form-group">
 
-                                            <input type="text" class="form-control form-control-user" id="admin_username" name="admin_username"  placeholder="Username..." value="<?= set_value('email');?>">
-                                            
+                                            <input type="text" class="form-control form-control-user" id="admin_email" name="admin_email"  placeholder="Username..." value="<?= set_value('admin_email');?>">
+
                                             <?= form_error('email','<small class="text-danger ml-3">','</small>'); ?>
                                         </div>
                                         <div class="form-group">
@@ -34,7 +34,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Forgot Password?</a>
+                                        <a class="small" href="<?= base_url('auth/forgotPassword'); ?>">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="<?= base_url('auth/adminregistrasi'); ?>">Create an Account!</a>

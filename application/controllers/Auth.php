@@ -13,16 +13,19 @@ class Auth extends CI_Controller {
 
     public function index()
     {
+          if($this->session->userdata('admin_email')){
+          redirect('Pegawai');
+        }
         //form validation for field
-        $this->form_validation->set_rules('admin_username','username', 'trim|required');
+        $this->form_validation->set_rules('admin_email','email', 'trim|required|valid_email');
         $this->form_validation->set_rules('admin_password', 'password','trim|required');
 
-        if($this->form_validation->run() == false)
+        if( $this->form_validation->run() == false )
         {
-            $data['title'] = 'Login Page';
-            $this->load->view('auth/templates/v_auth_header',$data);
+            $data['title'] = 'Halaman Login';
+            $this->load->view('auth/v_partials/v_auth_header',$data);
             $this->load->view('auth/v_login');
-            $this->load->view('auth/templates/v_auth_footer');
+            $this->load->view('auth/v_partials/v_auth_footer');
         } else {
 
             $this->_adminLogin();
@@ -32,29 +35,30 @@ class Auth extends CI_Controller {
     private function _adminLogin()
     {
         //admin var
-        $admin_username = $this->input->post('admin_username');
+        $admin_email = $this->input->post('admin_email');
         $admin_password = $this->input->post('admin_password');
 
-        $admin = $this->m_auth->adminLogin;
+        $admin = $this->db->get_where('tbl_admin',['admin_email' =>$admin_email])->row_array();
 
         if($admin){
 
             if($admin['admin_status'] == 1) {
 
-                if(password_verify($password, $admin['admin_password'])){
+                if(password_verify($admin_password, $admin['admin_password'])){
                     $data = [
-                        'admin_username' => $admin['admin_username'],
+                        'admin_email' => $admin['admin_email'],
                         'admin_level' => $admin['admin_level']
                     ];
                     $this->session->set_userdata($data);
-                        if($admin['admin_level'] == 1){
-                            redirect('admin');
+                        if($admin['admin_level'] == 1) {
+                            redirect('Owner');
+
                             } else {
-                                redirect('pegawai');
+
+                            redirect('pegawai');
                         }
 
                     } else {
-
                         //wrong password
                         $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Password salah!</div>');
                         redirect('auth');
@@ -75,8 +79,12 @@ class Auth extends CI_Controller {
 
     }
 
-    public function adminregistrasi()
+    public function adminRegistrasi()
     {
+          if($this->session->userdata('admin_email')){
+          redirect('Pegawai');
+          }
+
         //full name
         $this->form_validation->set_rules('admin_nama', 'Fullname', 'required|trim');
 
@@ -92,8 +100,6 @@ class Auth extends CI_Controller {
         //p2
         $this->form_validation->set_rules('admin_password2', 'Password', 'required|trim|matches[admin_password1]');
 
-
-
           if($this->form_validation->run() == false)
 
           {
@@ -101,26 +107,20 @@ class Auth extends CI_Controller {
               $this->load->view('auth/templates/v_auth_header',$data) ;
               $this->load->view('auth/v_registrasi');
               $this->load->view('auth/templates/v_auth_footer');
+
           } else {
-
               $this->M_auth->adminRegistrasi();
-              // $this->load->model('M_auth','adminRegistrasi');
-              // $admin_email = $this->input->post('admin_email','true');
-              // $token = base64_encode(random_bytes(32));
-              // $tbl_token = [
-              //
-              //     'tk_email' => $admin_email,
-              //     'tk_token' => $token,
-              //     'tk_time' => time()
-              //     //date created limit or time for expired email verification
-              // ];
 
-              //query to insert token to db
-              $this->M_auth->insertToken();
-              // $this->db->insert('tbl_token',$tbl_token);
-              // $this->load->model('M_auth','insertToken');
+              $admin_email = $this->input->post('admin_email','true');
+              $token = base64_encode(random_bytes(32));
+              $tbl_token = [
 
-              // $this->m_auth->insertToken('tbl_token',$tbl_token);
+                  'tk_email' => $admin_email,
+                  'tk_token' => $token,
+                  'tk_time' => time()
+
+              ];
+              $this->db->insert('tbl_token',$tbl_token);
 
               $this->_sendEmail($token,'verify');
 
@@ -154,38 +154,42 @@ class Auth extends CI_Controller {
         $this->email->subject('Verifikasi Akun');
         $this->email->message('Click link berikut untuk aktivasi akun anda: <a href="' . base_url() . 'auth/verify?admin_email=' . $this->input->post('admin_email')
         . '&tk_token=' . urlencode($token) . '">Aktivasi Account</a>');
+
           } else {
             $this->email->subject('Reset Password');
             $this->email->message('Click link berikut untuk reset password anda: <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('admin_email')
             . '&token=' . urlencode($token) . '">Reset Password</a> ');
+          }
+
+        //debugging Email
+        if($this->email->send()){
+            return true;
+
+        } else {
+
+            echo $this->email->print_debugger();
+            die;
         }
 
-      //debugging Email
-      if($this->email->send()){
-        return true;
-        } else {
-          echo $this->email->print_debugger();
-           die;
-      }
 
     }
 
     public function verify()
     {
       //get from link activation
-      $email = $this->input->get('admin_email');
+      $admin_email = $this->input->get('admin_email');
       $token = $this->input->get('tk_token');
 
-      $admin = $this->db->get_where('tbl_admin',['admin_email' => $email])->row_array();
+      $admin = $this->db->get_where('tbl_admin',['admin_email' => $admin_email])->row_array();
 
       if($admin){
             $tbl_token = $this->db->get_where('tbl_token', ['tk_token' => $token])->row_array();
 
             if($tbl_token) {
-
                 if(time() - $tbl_token['tk_time'] < ('60*60*24')) {
+
                     $this->db->set('admin_status',1);
-                    $this->db->where('admin_email',$email);
+                    $this->db->where('admin_email',$admin_email);
                     $this->db->update('tbl_admin');
 
                     $this->db->delete('tbl_token',['tk_email' =>$token]);
@@ -195,7 +199,7 @@ class Auth extends CI_Controller {
 
                     } else {
                       //token expired
-                        $this->db->delete('tbl_admin',['admin_email' => $email]);
+                        $this->db->delete('tbl_admin',['admin_email' => $admin_email]);
                         $this->db->delete('tbl_token',['tk_email' => $token]);
 
                         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun gagal!, token kadaluarsa</div>');
@@ -208,14 +212,123 @@ class Auth extends CI_Controller {
                }
 
           } else {
-          $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun anda gagal! akun salah</div>');
-          redirect('auth');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Aktivasi akun anda gagal! akun salah</div>');
+            redirect('auth');
         }
 
     }
 
 
 
+    public function adminLogout()
+    {
+      $this->session->unset_userdata('admin_email');
+      $this->session->unset_userdata('admin_level');
+
+      $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">logout berhasil</div>');
+      redirect('auth');
+    }
+
+    public function blocked()
+    {
+        $this->load->view('auth/blocked');
+    }
+
+    public function forgotPassword()
+    {
+      $this->form_validation->set_rules('admin_email','Email', 'trim|required|valid_email');
+
+      if ($this->form_validation->run() == false ) {
+          $data['title'] = 'Lupa Password';
+          $this->load->view('auth/v_partials/v_auth_header',$data);
+          $this->load->view('auth/v_forgotpass');
+          $this->load->view('auth/v_partials/v_auth_footer');
+
+      } else {
+
+          $admin_email = $this->input->post('admin_email');
+          $admin = $this->db->get_where('tbl_admin',['admin_email' => $admin_email, 'admin_status' => 1])->row_array();
+
+          if($admin){
+              $token =  base64_encode(random_bytes(32));
+              $tbl_token = [
+                  'tk_email' => $admin_email,
+                  'tk_token' => $token,
+                  'tk_time' => time()
+              ];
+
+              $this->db->insert('tbl_token',$tbl_token);
+              $this->_sendEmail($token,'forgot');
+
+              $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Periksa email untuk reset password</div>');
+              redirect('auth/forgotPassword');
+
+              } else {
+                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Email/User tidak teregistrasi!</div>');
+                redirect('auth/forgotPassword');
+
+          }
+      }
+    }
+
+
+    public function resetPassword()
+    {
+      $admin_email =  $this->input->get('admin_email');
+      $token = $this->input->get('tk_token');
+
+      $admin = $this->db->get_where('tbl_admin',['admin_emai' => $admin_email])->row_array();
+
+      if($admin) {
+
+          $tbl_token = $this->db->get_where('tbl_token',['tk_username' => $token])->row_array();
+          if($tbl_token) {
+              $this->session->set_userdata('reset_email',$admin_email);
+              $this->changePassword();
+
+                } else {
+                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Reset Password Gagal!token salah</div>');
+                redirect('auth/forgotPassword');
+                }
+
+      } else {
+        $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Reset Password Gagal!Email/User tidak salah</div>');
+        redirect('auth/forgotPassword');
+      }
+
+    }
+
+    public function changePassword()
+    {
+
+      if(!$this->session->userdata('reset_email')) {
+        redirect('auth');
+      }
+
+      $this->form_validation->set_rules('admin_password1','Password','trim|required|min_length[4]|matches[admin_password2]');
+      $this->form_validation->set_rules('admin_password1','Password','trim|required|min_length[4]|matches[admin_password1]');
+
+      if($this->form_validation->run() == false ) {
+          $data['title'] = 'Ubah Password';
+          $this->load->view('auth/v_partials/v_auth_header');
+          $this->load->view('auth//v_auth_header');
+          $this->load->view('auth/v_partials/v_auth_header');
+
+      } else {
+          $admin_password = password_hash($this->input(admin_password1), PASSWORD_DEFAULT);
+          $admin_email = $this->session->userdata('reset_email');
+
+          $this->db->set('admin_password',$admin_password);
+          $this->db->where('admin_email',$admin_email);
+          $this->db->update('tbl_admin');
+
+          $this->session->unset_userdata('reset_email');
+          $this->session->flashdata('message','<div class="alert alert-success" role="alert">Password telah diubah! Silahkan Login</div>');
+          redirect('auth');
+      }
+
+
+    }
 
 
 

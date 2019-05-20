@@ -14,18 +14,20 @@
 	<!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet"> 
+	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>"> 
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
 
 
 </head>
 <body>
-	<?php 
+
+	
+	<?php
 		error_reporting(0);
 		$tm=$kode_tm->row_array();
 	?>
@@ -35,9 +37,9 @@
 
 	<!-- Page Content -->
 	<div class="container">
-		
+
 		<!-- Page Heading -->
-		<div class="row">			
+		<div class="row">
 			<div class="col-lg-12">
 				<center><?php echo $this->session->flashdata('msg');?></center>
 					<h1 class="page-header">Transaksi Keluar
@@ -59,17 +61,17 @@
 						<tr>
 							<th><input type="text" name="kode_tm" id="kode_tm" placeholder="Masukkan kode transaksi masuk" style="width:208px;" class="form-control input-sm"></th>
 						</tr>
-							
+
 					</table>
 					<table>
 						<div id="detail_kode_tm" style="position:absolute;">
-								
+
 							</div>
 					</table>
 					<br>
-					
-					
-					
+
+
+
                     <h1><?php echo $tm['tm_status_bayar'];?></h1>
                     <br>
 				</form>
@@ -79,14 +81,14 @@
 							<th>Kode Transaksi Masuk</th>
 							<th>Nama paket</th>
 							<th style="text-align:center;">Satuan</th>
-                        	<th style="text-align:center;">Harga(Rp)</th>                      	
+                        	<th style="text-align:center;">Harga(Rp)</th>
                         	<th style="text-align:center;">Qty</th>
                         	<th style="text-align:center;">Sub Total</th>
-                        	
+
 						</tr>
 					</thead>
 					<tbody>
-						 <?php 
+						 <?php
 									//$no=0;
 									foreach ($kode_dtm->result_array() as $a):
 										//$no++;
@@ -99,42 +101,42 @@
 									 ?>
 					<tr>
 						<td><?php echo $id;?></td>
-						<td><?php echo $nama;?></td>						
+						<td><?php echo $nama;?></td>
 						<td style="text-align:center;"><?php echo $satuan;?></td>
 						<td style="text-align:center;"><?php echo number_format($Harga);?></td>
 						<td style="text-align:center;"><?php echo number_format($Qty);?></td>
 						<td style="text-align:center;"><?php echo number_format($Sub_Total);?></td>
-						
+
 					</tr>
 						<?php endforeach;?>
-					</tbody>  	
+					</tbody>
 					 <!-- <thead>
 						<tr>
 							<th>Kode Transaksi Masuk</th>
 							<th>Nama paket</th>
 							<th style="text-align:center;">Satuan</th>
-                        	<th style="text-align:center;">Harga(Rp)</th>                      	
+                        	<th style="text-align:center;">Harga(Rp)</th>
                         	<th style="text-align:center;">Qty</th>
                         	<th style="text-align:center;">Sub Total</th>
-                        	
+
 						</tr>
 					</thead>
 					<tbody>
-						
-						 
+
+
 					<tr>
 						<td><input type="" name="kode_dtm"></td>
-						<td><input type="" name="nama_paket"></td>						
+						<td><input type="" name="nama_paket"></td>
 						<td style="text-align:center;"><input type="satuan" name=""></td>
 						<td style="text-align:center;"><input type="" name="harga"></td>
 						<td style="text-align:center;"><input type="" name="qty"></td>
 						<td style="text-align:center;"><input type="" name="subtotal"></td>
-						
+
 					</tr>
-						
-					</tbody> --> 				
+
+					</tbody> -->
 				</table>
-				
+
 				<form action="<?php echo base_url().'admin/transaksi_keluar/simpan_transaksi_keluar'?>" method="post">
 					<table align="right">
 						<tr>
@@ -155,46 +157,46 @@
                     <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
                 </tr>
 
-                
-                
+
+
                 <tr>
                     <th>Kembalian(Rp)</th>
-                    <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="kembalian form-control input-sm" style="text-align:right;margin-bottom:5px;" required ></th>  
-                      
+                    <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="kembalian form-control input-sm" style="text-align:right;margin-bottom:5px;" required ></th>
+
 
                 </tr>
-                
+
                  <tr>
                     <!-- <th>ID Member</th> -->
                     <th style="text-align:right;"><input type="hidden" id="idm" name="idm" value="<?php echo $tm['tm_total'];?>" class="form-control input-sm"  placeholder="" style="margin-bottom:5px;text-align:right;" ></th>
-                   
-                </tr> 
+
+                </tr>
                 <tr>
                     <th>Atas Nama</th>
-                    <th style="text-align:right;"><input type="text" id="nama" name="nama" value="<?php echo $tm['tm_nama'];?>" class="form-control input-sm"  style="margin-bottom:5px;text-align:right;" required></th>                     
+                    <th style="text-align:right;"><input type="text" id="nama" name="nama" value="<?php echo $tm['tm_nama'];?>" class="form-control input-sm"  style="margin-bottom:5px;text-align:right;" required></th>
                 </tr>
 
                 <tr>
                     <!-- <th>ID Member</th> -->
                     <th style="text-align:right;"><input type="hidden" id="tm_nofak" name="tm_nofak" value="<?php echo $tm['tm_nofak'];?>" class="form-control input-sm"  placeholder="" style="margin-bottom:5px;text-align:right;" ></th>
-                   
+
                 </tr>
 
-                
-                
-                
+
+
+
 
                 <tr align="right">
                 <th>
                 	<br>
                 	<td style="width:60px;" ><button type="submit" class="btn btn-info btn-lg"> S   I   M   P   A   N</button></td>
-                </th>	
-							
+                </th>
+
 						</tr>
-              
+
 					</table>
-					
-					
+
+
 				</form>
 				<hr/>
 			</div>
@@ -212,40 +214,40 @@
 							<table class="table table-bordered table-condensed" style="font-size:11px;" id="mydata">
 								<thead>
 									<tr>
-										
+
 			                            <th style="width:120px;">Kode Transaksi Masuk</th>
 			                            <th style="width:30px;">Total Sepatu</th>
 			                            <th style="width:150px;">Total Harga</th>
 			                            <th style="width:100px;">Nama Pelanggan</th>
 			                            <th style="width:100px;">Status</th>
-			                            
-			                            
-                        
+
+
+
 									</tr>
 
 								</thead>
 								<tbody>
-									<?php 
+									<?php
 									$no=0;
 									foreach ($data->result_array() as $a):
 										$no++;
 										$id=$a['tm_nofak'];
                             			$total_sepatu=$a['tm_total_sepatu'];
 			                            $total=$a['tm_total'];
-			                            
+
 			                            $nama_pelanggan=$a['tm_nama'];
 			                            $tm_status=$a['tm_status'];
-			                            
+
 									 ?>
 						<tr>
-                            
+
                             <td><?php echo $id;?></td>
                             <td style="text-align:right;"><?php echo $total_sepatu;?></td>
                             <td style="text-align:right;"><?php echo 'Rp '.number_format($total);?></td>
                             <td style="text-align:right;"><?php echo $nama_pelanggan;?></td>
                             <td style="text-align:right;"><?php echo $tm_status;?></td>
-                            
-                            
+
+
                             </form>
                             </td>
                         </tr>
@@ -254,13 +256,13 @@
 							</table>
 						</div>
 					</div>
-				</div>				
+				</div>
 			</div>
 
 			<!--END MODAL-->
-		
 
-        
+
+
 
 
 		</div>
@@ -313,7 +315,7 @@
 
 
 	<!-- jQuery -->
-    <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script> 
+    <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -325,7 +327,7 @@
     <script src="<?php echo base_url().'assets/js/moment.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/bootstrap-datetimepicker.min.js'?>"></script>
 
-    
+
     <script type="text/javascript">
         $(function(){
             $('#jml_uang').on("input",function(){
@@ -335,7 +337,7 @@
                 $('#jml_uang').val(hsl);
                 $('#kembalian').val(hsl-total);
             })
-            
+
         });
     </script>
     <script type="text/javascript">
@@ -375,7 +377,7 @@
          <!-- <script type="text/javascript">
         $(document).ready(function(){
              $('#idm').on('input',function(){
-                 
+
                 var kode=$(this).val();
                 $.ajax({
                     type : "POST",
@@ -389,21 +391,21 @@
                             $('[name="nama"]').val(data.user_nama);
                             $('[name="alamat"]').val(data.user_alamat);
                             $('[name="telp"]').val(data.user_no_telp);
-                             
+
                         });
-                         
+
                     }
                 });
                 return false;
            });
- 
+
         });
     </script> -->
 
     <!-- <script type="text/javascript">
         $(document).ready(function(){
              $('#kode_tm').on('input',function(){
-                 
+
                 var kode_tm=$(this).val();
                 $.ajax({
                     type : "POST",
@@ -420,22 +422,22 @@
                             $('[name="qty"]').val(data.dtm_qty);
                             $('[name="subtotal"]').val(data.dtm_total);
 
-                            
-                             
+
+
                         });
-                         
+
                     }
                 });
                 return false;
            });
- 
+
         });
     </script> -->
 
     <!-- <script type="text/javascript">
         $(document).ready(function(){
              $('#kode_tm').on('input',function(){
-                 
+
                 var kode_tm=$(this).val();
                 $.ajax({
                     type : "POST",
@@ -450,15 +452,15 @@
                             $('[name="id_member"]').val(data.tm_user_id);
                             $('[name="nama"]').val(data.tm_nama);
                             $('[name="status_bayar"]').val(data.tm_status_bayar);
-                            
-                             
+
+
                         });
-                         
+
                     }
                 });
                 return false;
            });
- 
+
         });
     </script> -->
 
@@ -468,7 +470,7 @@
             $('#mydata').DataTable();
         } );
     </script>
-    
+
     <script type="text/javascript">
         $(document).ready(function(){
             //Ajax kabupaten/kota insert
@@ -483,7 +485,7 @@
                $('#detail_paket').html(msg);
                }
             });
-            }); 
+            });
 
             // $("#kode_brg").keypress(function(e){
             //     if(e.which==13){
@@ -491,6 +493,6 @@
             //     }
             // });
         });
-    </script>		
+    </script>
 </body>
 </html>

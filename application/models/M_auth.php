@@ -19,17 +19,7 @@ class M_auth extends CI_Model {
 
     public function insertToken()
     {
-      $admin_email = $this->input->post('admin_email','true');
-      $token = base64_encode(random_bytes(32));
-      $tbl_token = [
-
-          'tk_email' => $admin_email,
-          'tk_token' => $token,
-          'tk_time' => time()
-          //date created limit or time for expired email verification
-      ];
         $this->db->insert('tbl_token',$tbl_token);
-
     }
 
     public function adminLogin()

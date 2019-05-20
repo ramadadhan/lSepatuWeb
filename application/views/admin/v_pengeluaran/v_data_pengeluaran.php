@@ -59,7 +59,7 @@
                                 <th style="text-align:center;">Nama Pengeluaran</th>
                                 <th style="text-align:center;">harga</th>
                                 <th style="text-align:center;">keterangan</th>
-                                <th>Aksi</th>             	         	
+                                <th style="text-align:center;">Aksi</th>             	         	
                             </tr>
                         </thead>
                         <?php 
