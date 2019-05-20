@@ -2,7 +2,7 @@
 	$this->load->view("admin/v_partials/v_navbar_header")
 ?>
 
-<div class="menu"> <span></span> </div>
+<div class="menu"><p id="tagname"></p><span></span></div>
 <nav id="nav">
 		<ul class="main">
 				<li><a href="#">Transaksi Masuk</a></li>

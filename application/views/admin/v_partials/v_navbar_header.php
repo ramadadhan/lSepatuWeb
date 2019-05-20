@@ -16,10 +16,11 @@
 ========================================== */
 .menu {
 	  width: 70px;
-    height: 0px;
+    height: 30px;
     position: absolute;
     z-index: 21;
     right: 1%;
+
 }
 .menu span {
 	position: relative;
@@ -35,14 +36,18 @@
 	margin-left: -15px;
 	margin-top: -1.5px;
 }
+
+.menu span #tagname {
+	margin-right:	100px;
+}
 .menu span, .menu span::before, .menu span::after {
 	display: block;
 
-		width: 26px;
+	width: 45px;
 	right: 0;
-	height: 3px;
+	height: 5px;
 	background-color: #fccb32;
-	outline: 1px solid transparent;
+	outline: 550px solid transparent;
 	-webkit-transition-property: background-color, -webkit-transform;
 	-moz-transition-property: background-color, -moz-transform;
 	-o-transition-property: background-color, -o-transform;
@@ -55,13 +60,17 @@
 .menu span::before, .menu span::after {
 	position: absolute;
 	content: "";
+
+
 }
 .menu span::before {
 	top: -9px;
-	 width:20px
+	 /* width:45px; */
+
 }
 .menu span::after {
-	top: 9px;width: 33px;
+	top: 9px;
+	width: 45px;
 
 }
 .menu.clicked span {
@@ -72,7 +81,8 @@
 	-moz-transform: translateY(9px) rotate(45deg);
 	-ms-transform: translateY(9px) rotate(45deg);
 	-o-transform: translateY(9px) rotate(45deg);
-	transform: translateY(9px) rotate(45deg);    width: 33px;
+	transform: translateY(9px) rotate(45deg);
+	width: 45px;
 }
 .menu.clicked span::after {
 	-webkit-transform: translateY(-9px) rotate(-45deg);
