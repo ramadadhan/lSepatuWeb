@@ -4,8 +4,8 @@
 <head>
 	<title>Laporan</title>
     
-    <link rel="stylesheet" href="<?php echo base_url('assets/jquery-ui1/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
-    <script src="<?php echo base_url('assets/jquery.min.js'); ?>"></script> <!-- Load file jquery -->
+    <link rel="stylesheet" href="<?php echo base_url('jquery-ui/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
+    <script src="<?php echo base_url('jquery.min.js'); ?>"></script> <!-- Load file jquery -->
 </head>
 <body>
 
@@ -109,7 +109,7 @@
     }
     ?>
     
-    <script src="<?php echo base_url('assets/jquery-ui/jquery-ui.min.js'); ?>"></script> <!-- Load file plugin js jquery-ui -->
+    <script src="<?php echo base_url('jquery-ui/jquery-ui.min.js'); ?>"></script> <!-- Load file plugin js jquery-ui -->
     <script>
     $(document).ready(function(){ // Ketika halaman selesai di load
         $('.input-tanggal').datepicker({
