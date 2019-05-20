@@ -47,7 +47,6 @@ class Laporan extends CI_Controller {
   public function cetak(){
     if(isset($_GET['filter']) && ! empty($_GET['filter'])){ // Cek apakah user telah memilih filter dan klik tombol tampilkan
         $filter = $_GET['filter']; // Ambil data filder yang dipilih user
-
         if($filter == '1'){ // Jika filter nya 1 (per tanggal)
             $tgl = $_GET['tanggal'];
 
@@ -75,16 +74,16 @@ class Laporan extends CI_Controller {
     $data['tbl_transaksi_masuk'] = $transaksi;
 
     ob_start();
-    $this->load->view('print', $data);
+    $this->load->view('admin/print', $data);
     $html = ob_get_contents();
     ob_end_clean();
 
-    require_once('./assets/html2pdf/html2pdf.class.php');
-    $pdf = new HTML2PDF('P','A4','en');
+    require_once('./html2pdf/html2pdf.class.php');
+    $pdf = new HTML2PDF('P','A3','en');
     $pdf->WriteHTML($html);
     $pdf->Output('Data Transaksi.pdf', 'D');
 }
-public function cetak_pdf() {
+/* public function cetak_pdf() {
     // load view yang akan digenerate atau diconvert
     $data = array(
       'record'  => $this->db->query("SELECT * FROM tbl_transaksi_masuk")
@@ -103,6 +102,7 @@ public function cetak_pdf() {
     //atau jika tidak ingin menampilkan (tanpa) preview di halaman browser
     //$this->dompdf->stream("welcome.pdf");
  }
+ */
   
 }
 
