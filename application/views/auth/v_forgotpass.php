@@ -20,7 +20,7 @@
                                    <div class="form-group">
                                        <!--type for emai is just enter on text because later that will validated by code igniter-->
                                        <!--add set value to repopulating the form for user which input wrong format on form-->
-                                       <input type="text" class="form-control form-control-user" id="admin_email" name="admin_email"  placeholder="Masukkan Email..." value="<?= set_value('admin_email');?>">
+                                       <input type="text" class="form-control form-control-user" id="users_email" name="users_email"  placeholder="Masukkan Email..." value="<?= set_value('users_email');?>">
 
                                        <?= form_error('email','<small class="text-danger ml-3">','</small>'); ?>
                                    </div>

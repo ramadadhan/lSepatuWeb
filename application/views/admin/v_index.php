@@ -1,27 +1,15 @@
+<?= base_url('menu/access');  ?>
+<?php
+    //QUERY MENU
+    $level_id = $this->session->userdata('users_level');
+    $queryMenu =
+      "SELECT tbl_menu.menu_id, tbl_menu.menu_title, tbl_menu.menu_icon
+      FROM tbl_menu JOIN tbl_menu_akses
+      ON tbl_menu.menu_id = tbl_menu_akses.akses_menu_id
+      WHERE tbl_menu_akses.akses_level_id = $level_id
+      ORDER BY tbl_menu_akses.akses_menu_id ASC";
+    $menu = $this->db->query($queryMenu)->result_array();
 
-
-    <!--
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-
-            <div class="navbar-header">
-                <div id="myNav" class="overlay">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <div class="overlay-content">
-                        <a src="<?php echo base_url().'#'?>">Data Admin</a>
-                        <a href="#">Data Member</a>
-                        <a href="<?php base_url()?>data_paket">Data Paket</a>
-                        <a href="<?php base_url()?>data_pengeluaran">Data Pengeluaran</a>
-                    </div>
-                </div>
-                <span style="font-size:20px;cursor:pointer" class="navbar-brand" onclick="openNav()">&#9776; SUPER ADMIN</span>
-            </div>
-        </div>
-    </nav>
--->
-
-    <?php
-    $this->load->view("admin/v_partials/v_navbar2");
  ?>
 
     <!-- page content -->
@@ -29,11 +17,29 @@
         <!-- page heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 id="page-header" >Panel Menu</h1>
+                <h1 id="page-header">Panel Menu</h1>
             </div>
         </div>
 
         <div class="container">
+            <div class="col-lg-9">
+                <div class="mainbody-section text-center">
+
+
+                    <div class="row">
+
+                      <?php foreach($menu as $m) : ?>
+                        <div class="col-md-3 portfolio-item">
+                            <div class="menu-item blue" style="height:150px;">
+                                <a href="" data-toggle="modal">
+                                    <!-- <i class="fa fa-cart-plus"></i> -->
+                                  <?php echo $m['menu_icon']; ?>
+                                    <p style="text-align:left;font-size:14px;padding-left:5px;"><?= $m['menu_title']; ?></p>
+                                </a>
+                            </div>
+                        </div>
+
+        <!-- <div class="container">
             <div class="col-lg-9">
                 <div class="mainbody-section text-center">
                     <div class="row">
@@ -104,7 +110,16 @@
                             <div class="menu-item blue" style="height:150px;">
                                 <a href="" data-toggle="modal">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    <p style="text-align:left;font-size:14px;padding-left:5px;">Registrasi</p>
+                                    <p style="text-align:left;font-size:14px;padding-left:5px;">Registrasi Pegawai</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 portfolio-item">
+                            <div class="menu-item blue" style="height:150px;">
+                                <a href="" data-toggle="modal">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    <p style="text-align:left;font-size:14px;padding-left:5px;">Registrasi User</p>
                                 </a>
                             </div>
                         </div>
@@ -116,8 +131,9 @@
                                     <p style="text-align:left;font-size:14px;padding-left:5px;">Profil</p>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
 
+                  <?php endforeach; ?>
                     </div>
                 </div>
             </div>
