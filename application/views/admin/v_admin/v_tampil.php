@@ -54,31 +54,33 @@
 
 	<center><?php echo anchor('admin/user_admin/tambah','Tambah Data'); ?></center>
 	
-		<tr>
+	<tr>
 			<th>No</th>
 			<th>Tanggal Daftar</th>
 			<th>Nama</th>
-			<th>Username</th>
 			<th>Password</th>
-            <th>Level</th>
+			<th>Email</th>
+			<th>Level</th>
 			<th>Status</th>
 			<th>Action</th>
 		</tr>
 		<?php 
 		$no = 1;
-		foreach($tbl_admin as $a){ 
+		foreach($tbl_users as $u){ 
 		?>
 		<tr>
 			<td><?php echo $no++ ?></td>
-			<td><?php echo $a->admin_tanggal ?></td>
-			<td><?php echo $a->admin_nama ?></td>
-			<td><?php echo $a->admin_username ?></td>
+			<td><?php echo $u->users_tanggal ?></td>
+			<td><?php echo $u->users_nama ?></td>
 			<td><?php echo password_hash("secret password", PASSWORD_DEFAULT) ?></td>
-            <td><?php echo $a->admin_level ?></td>
-			<td><?php echo $a->admin_status ?></td>
+			<td><?php echo $u->users_email ?></td>
+			<td><?php echo $u->users_level ?></td>
+			<td><?php echo $u->users_status ?></td>
+			
 			<td>
-			      <?php echo anchor('admin/user_admin/edit/'.$a->admin_id,'Edit'); ?>
-				  <?php echo anchor('admin/user_admin/hapus/'.$a->admin_id,'Hapus'); ?>
+			      <?php echo anchor('admin/user_admin/edit/'.$u->users_id,'Edit'); ?>
+				  
+                              <?php echo anchor('admin/user_admin/hapus/'.$u->users_id,'Hapus'); ?>
 			</td>
 		</tr>
 		<?php } ?>

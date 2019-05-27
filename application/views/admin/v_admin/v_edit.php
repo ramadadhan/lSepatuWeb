@@ -53,32 +53,32 @@
                 
 	
 	<div class="card-body">
-	<?php foreach($tbl_admin as $a){ ?>
+	<?php foreach($tbl_users as $u){ ?>
 	<form action="<?php echo base_url('index.php/'). 'admin/user_admin/update'; ?>" method="post">
 		    
-			<div class="form-group">
+	<div class="form-group">
 				<label>Nama</label>
 				<td>
-					<input type="hidden" name="admin_id" value="<?php echo $a->admin_id ?>">
-					<input type="hidden" name="admin_tanggal" value="<?php echo $a->admin_tanggal ?>">
-					<input class="form-control"  type="text" name="admin_nama" value="<?php echo $a->admin_nama ?>">
+					<input type="hidden" name="users_id" value="<?php echo $u->users_id ?>">
+					<input type="hidden" name="users_tanggal" value="<?php echo $u->users_tanggal ?>">
+					<input class="form-control" type="text" name="users_nama" value="<?php echo $u->users_nama ?>">
 				</td>
 			</div>
 			<div class="form-group">
-				<label>Username</label>
-				<td><input class="form-control" type="text" name="admin_username" value="<?php echo $a->admin_username ?>"></td>
+				<label>Password</label>
+				<td><input class="form-control" type="text" name="users_password" disabled value="<?php echo $u->users_password ?>"></td>
 			</div>
 			<div class="form-group">
-				<label>Password</label>
-				<td><input class="form-control" type="password" name="admin_password" disabled value="<?php echo $a->admin_password ?>"></td>
+				<label>Email</label>
+				<td><input class="form-control" type="text" name="users_email" value="<?php echo $u->users_email ?>"></td>
 			</div>
-            <div class="form-group">
+			<div class="form-group">
 				<label>Level</label>
-				<td><input class="form-control" type="text" name="admin_level" value="<?php echo $a->admin_level ?>"></td>
+				<td><input class="form-control" type="text" name="users_level" value="<?php echo $u->users_level ?>"></td>
 			</div>
 			<div class="form-group">
 				<label>Status</label>
-				<td><input class="form-control" type="text" name="admin_status" value="<?php echo $a->admin_status ?>"></td>
+				<td><input class="form-control" type="password" name="users_status"  value="<?php echo $u->users_status ?>"></td>
 			</div>
 			<tr>
 				<td></td>

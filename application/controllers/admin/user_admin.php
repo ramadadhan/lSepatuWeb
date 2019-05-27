@@ -10,7 +10,7 @@ class user_Admin extends CI_Controller{
 	}
  
 	function index(){
-		$data['tbl_admin'] = $this->m_admin->tampil_data()->result();
+		$data['tbl_users'] = $this->m_admin->tampil_data()->result();
 		$this->load->view('admin/v_admin/v_tampil',$data);
     }
     
@@ -19,57 +19,63 @@ class user_Admin extends CI_Controller{
     }
     
     function tambah_aksi(){
-		$nama = $this->input->post('admin_nama');
-		$username = $this->input->post('admin_username');
-        $password =$this->input->post('admin_password');
-        $level = $this->input->post('admin_level');
-        $status = $this->input->post('admin_status');
- 
-		$data = array(
-			'admin_nama' => $nama,
-			'admin_username' => $username,
-            'admin_password' => $password,
-            'admin_level' => $level,
-            'admin_status' => $status
-			);
-		$this->m_admin->input_data($data,'tbl_admin');
+      $nama = $this->input->post('users_nama');
+      $password =$this->input->post('users_password');
+      $email = $this->input->post('users_email');
+      $level = $this->input->post('users_level');
+      $status = $this->input->post('users_status');
+    
+      
+  
+   
+      $data = array(
+        'users_nama' => $nama,
+        'users_password' => $password,
+        'users_email' => $email,
+        'users_level' => $level,
+        'users_status' => $status
+        );
+		$this->m_admin->input_data($data,'tbl_users');
 		redirect('admin/user_admin/index');
     }
     
-    function hapus($admin_id){
-		$where = array('admin_id' => $admin_id);
-		$this->m_admin->hapus_data($where,'tbl_admin');
+    function hapus($users_id){
+		$where = array('users_id' => $users_id);
+		$this->m_admin->hapus_data($where,'tbl_users');
 		redirect('admin/user_admin/index');
     }
     
-    function edit($admin_id){
-		$where = array('admin_id' => $admin_id);
-		$data['tbl_admin'] = $this->m_admin->edit_data($where,'tbl_admin')->result();
+    function edit($users_id){
+		$where = array('users_id' => $users_id);
+		$data['tbl_users'] = $this->m_admin->edit_data($where,'tbl_users')->result();
 		$this->load->view('admin/v_admin/v_edit',$data);
     }
     
     function update(){
-        $admin_id = $this->input->post('admin_id');
+        $users_id = $this->input->post('users_id');
         $tanggal = $this->input->post('admin_tanggal');
-        $nama = $this->input->post('admin_nama');
-		    $username = $this->input->post('admin_username');
-        $password = $this->input->post('admin_password');
-        $level = $this->input->post('admin_level');
-        $status = $this->input->post('admin_status');
+        $nama = $this->input->post('users_nama');
+    $password =$this->input->post('users_password');
+    $email = $this->input->post('users_email');
+    $level = $this->input->post('users_level');
+    $status = $this->input->post('users_status');
+	
     
-        $data = array(
-            'admin_nama' => $nama,
-			      'admin_username' => $username,
-            'admin_password' => $password,
-            'admin_level' => $level,
-            'admin_status' => $status
-        );
+
+ 
+		$data = array(
+			'users_nama' => $nama,
+			'users_password' => $password,
+      'users_email' => $email,
+      'users_level' => $level,
+      'users_status' => $status
+			);
     
         $where = array(
-            'admin_id' => $admin_id
+            'users_id' => $users_id
         );
     
-        $this->m_admin->update_data($where,$data,'tbl_admin');
+        $this->m_admin->update_data($where,$data,'tbl_users');
         redirect('admin/user_admin/index');
     }
     function logout(){

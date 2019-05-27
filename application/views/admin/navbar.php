@@ -68,10 +68,11 @@ body {
 		<div id="myNav" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <div class="overlay-content">
-                <a href="<?php base_url()?>user_admin">Data Admin</a>
-                <a href="<?php base_url()?>user_member">Data Member</a>
-                <a href="<?php base_url()?>data_paket">Data Paket</a>
-                <a href="<?php base_url()?>data_pengeluaran">Data Pengeluaran</a>
+                <a href="<?php echo base_url('index.php/'). 'admin/user_admin';?>">Data Admin</a>
+                <a href="<?php echo base_url('index.php/'). 'admin/user_member';?>">Data Member</a>
+                <a href="<?php echo base_url('index.php/'). 'admin/data_paket';?>">Data Paket</a>
+                <a href="<?php echo base_url('index.php/'). 'admin/data_pengeluaran';?>">Data Pengeluaran</a>
+                <a href="<?php echo base_url('index.php/'). 'admin/laporan';?>">Laporan</a>
             </div>
         </div>
           <span style="font-size:20px;cursor:pointer" class="navbar-brand" onclick="openNav()" >&#9776; SUPER ADMIN</span>						

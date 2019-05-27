@@ -56,26 +56,27 @@
 	<form action="<?php echo 'tambah_aksi'; ?>" method="post">
 		
 			
-	<div class="form-group" >
+	
 
+	<div class="form-group">
 				<label>Nama</label>
-				<td><input class="form-control" type="text" name="admin_nama"></td>
+				<td><input class="form-control" type="text" name="users_nama"></td>
 			</div>
 			<div class="form-group">
-				<label>Username</label>
-				<td><input class="form-control" type="text" name="admin_username"></td>
-			</div>
-            <div class="form-group">
 				<label>Password</label>
-				<td><input class="form-control" type="password" name="admin_password"></td>
+				<td><input class="form-control" type="text" name="users_password"></td>
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<td><input class="form-control" type="text" name="users_email"></td>
 			</div>
 			<div class="form-group">
 				<label>Level</label>
-				<td><input class="form-control" type="text" name="admin_level"></td>
+				<td><input class="form-control" type="text" name="users_level"></td>
 			</div>
-			<div class="form-group">
-				<label>Status</label>
-				<td><input class="form-control" type="text" name="admin_status"></td>
+            <div class="form-group">
+				<label>Staus</label>
+				<td><input class="form-control" type="password" name="users_status"></td>
 			</div>
 			<tr>
 				<td></td>
