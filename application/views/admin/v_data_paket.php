@@ -25,7 +25,16 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
 
 
+    </head>
+<?php 
+        $this->load->view('admin/navbar');
+   ?>
 
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Library</a></li>
+  <li class="active">Data</li>
+</ol>
 <!-- page content -->
 <div class="container">
 	<!-- page heading -->
