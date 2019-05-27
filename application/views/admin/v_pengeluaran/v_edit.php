@@ -53,30 +53,30 @@
                 
 	
 	<div class="card-body">
-	<?php foreach($tbl_user as $u){ ?>
-	<form action="<?php echo base_url('index.php/'). 'admin/user_member/update'; ?>" method="post">
+	<?php foreach($tbl_pengeluaran as $pe){ ?>
+	<form action="<?php echo base_url(). 'admin/data_pengeluaran/update'; ?>" method="post">
 	
 		    
 			
 			<div class="form-group">
 				<label>ID Pengeluaran</label>
-				<td><input class="form-control" type="text" name="pengeluaran_id" value="<?php echo $u->pengeluaran_id ?>"></td>
+				<td><input class="form-control" type="text" name="pengeluaran_id" disabled value="<?php echo $pe->pengeluaran_id ?>"></td>
 			</div>
 			<div class="form-group">
 				<label>Tanggal Pengeluaran</label>
-				<td><input class="form-control" type="text" name="pengeluaran_tanggal" value="<?php echo $u->pengeluaran_tanggal ?>"></td>
+				<td><input class="form-control" type="text" name="pengeluaran_tanggal" value="<?php echo $pe->pengeluaran_tanggal ?>"></td>
 			</div>
 			<div class="form-group">
 				<label>Nama Pengeluaran</label>
-				<td><input class="form-control" type="text" name="pengeluaran_nama" value="<?php echo $u->pengeluaran_nama ?>"></td>
+				<td><input class="form-control" type="text" name="pengeluaran_nama" value="<?php echo $pe->pengeluaran_nama ?>"></td>
 			</div>
 			<div class="form-group">
 				<label>Total Pengeluaran</label>
-				<td><input class="form-control" type="password" name="pengaluaran_harga" disabled value="<?php echo $u->pengaluaran_harga ?>"></td>
+				<td><input class="form-control" type="text" name="pengeluaran_harga" value="<?php echo $pe->pengeluaran_harga ?>"></td>
 			</div>
 			<div class="form-group">
 				<label>Keterangan</label>
-				<td><input class="form-control" type="password" name="pengaluaran_keterangan" disabled value="<?php echo $u->pengaluaran_keterangan ?>"></td>
+				<td><input class="form-control" type="text" name="pengeluaran_keterangan" value="<?php echo $pe->pengeluaran_keterangan ?>"></td>
 			</div>
             
 			<tr>

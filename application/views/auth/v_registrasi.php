@@ -9,32 +9,32 @@
                   <h1 class="h4 text-gray-900 mb-4">Registrasi Akun</h1>
               </div>
 
-              <form class="user" method="post" action="<?= base_url('Auth/adminregistrasi'); ?>">
+              <form class="user" method="post" action="<?= base_url('Auth/usersRegistrasi'); ?>">
 
                   <div class="form-group row">
                   </div>
                   <div class="form-group">
                       <!--add set value to repopulating the form for user which input wrong format on form-->
-                      <input type="text" class="form-control form-control-user" id="admin_nama" name="admin_nama" placeholder="Full Name" value="<?= set_value('admin_nama'); ?>">
+                      <input type="text" class="form-control form-control-user" id="users_nama" name="users_nama" placeholder="Full Name" value="<?= set_value('users_nama'); ?>">
                       <!--to set form error in midle position-->
-                      <?= form_error('admin_nama','<small class="text-danger ml-3">','</small>'); ?>
+                      <?= form_error('users_nama','<small class="text-danger ml-3">','</small>'); ?>
                   </div>
 
                   <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="admin_email" name="admin_email" placeholder="Email Address" value="<?= set_value('admin_email'); ?>">
+                      <input type="text" class="form-control form-control-user" id="users_email" name="users_email" placeholder="Email Address" value="<?= set_value('users_email'); ?>">
                       <!--to set form error in midle position-->
-                       <?= form_error('admin_email','<small class="text-danger ml-3">','</small>'); ?>
+                       <?= form_error('users_email','<small class="text-danger ml-3">','</small>'); ?>
                   </div>
 
                   <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="password" class="form-control form-control-user" id="admin_password1" name="admin_password1" placeholder="Password">
+                          <input type="password" class="form-control form-control-user" id="users_password1" name="users_password1" placeholder="Password">
                            <!--to set form error in midle position-->
-                           <?= form_error('admin_password1','<small class="text-danger ml-3">','</small>'); ?>
+                           <?= form_error('users_password1','<small class="text-danger ml-3">','</small>'); ?>
                       </div>
 
                       <div class="col-sm-6">
-                          <input type="password" class="form-control form-control-user" id="admin_password2" name="admin_password2" placeholder="Repeat Password">
+                          <input type="password" class="form-control form-control-user" id="users_password2" name="users_password2" placeholder="Repeat Password">
                       </div>
                   </div>
 

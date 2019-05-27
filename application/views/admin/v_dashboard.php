@@ -8,7 +8,7 @@
 	<!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet"> 
+	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
 
 </head>
-<?php 
+<?php
         $this->load->view('admin/navbar');
    ?>
 
@@ -26,7 +26,7 @@
 </header>
 
 	<!-- jQuery -->
-    <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script> 
+    <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -37,9 +37,9 @@
     <script src="<?php echo base_url().'assets/js/jquery.price_format.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/moment.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/bootstrap-datetimepicker.min.js'?>"></script>
- 
 
-    
-  	
+
+
+
 </body>
 </html>

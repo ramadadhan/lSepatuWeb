@@ -64,7 +64,7 @@
                         </thead>
                         <?php 
                                 $no = 1;
-                                foreach($pengeluaran as $pe){ 
+                                foreach($tbl_pengeluaran as $pe){ 
                                 ?>
                                 <tr>
                                     <td style="text-align:center;"><?php echo $no++ ?></td>
@@ -74,7 +74,7 @@
                                     <td><?php echo $pe->pengeluaran_harga ?></td>
                                     <td><?php echo $pe->pengeluaran_keterangan ?></td>
                                     <td>
-                                        <?php echo anchor('admin/data_pengaluaran/edit/'.$pe->pengeluaran_id,'Edit'); ?>
+                                        <?php echo anchor('admin/data_pengeluaran/edit/'.$pe->pengeluaran_id,'Edit'); ?>
                                         <?php echo anchor('admin/data_pengeluaran/hapus/'.$pe->pengeluaran_id,'Hapus'); ?>
                                     </td>
                                 </tr>

@@ -78,8 +78,7 @@
 			<td><?php echo $a->admin_status ?></td>
 			<td>
 			      <?php echo anchor('admin/user_admin/edit/'.$a->admin_id,'Edit'); ?>
-				  
-                              <?php echo anchor('admin/user_admin/hapus/'.$a->admin_id,'Hapus'); ?>
+				  <?php echo anchor('admin/user_admin/hapus/'.$a->admin_id,'Hapus'); ?>
 			</td>
 		</tr>
 		<?php } ?>
