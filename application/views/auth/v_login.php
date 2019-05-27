@@ -19,12 +19,12 @@
                                     <form class="user" method="post" action="<?= base_url('auth');?>" >
                                         <div class="form-group">
 
-                                            <input type="text" class="form-control form-control-user" id="admin_email" name="admin_email"  placeholder="Username..." value="<?= set_value('admin_email');?>">
+                                            <input type="text" class="form-control form-control-user" id="users_email" name="users_email"  placeholder="Username..." value="<?= set_value('users_email');?>">
 
                                             <?= form_error('email','<small class="text-danger ml-3">','</small>'); ?>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="admin_password" name="admin_password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="users_password" name="users_password" placeholder="Password">
                                             <?= form_error('password','<small class="text-danger ml-3">','</small>'); ?>
                                         </div>
 
@@ -37,7 +37,7 @@
                                         <a class="small" href="<?= base_url('auth/forgotPassword'); ?>">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="<?= base_url('auth/adminRegistrasi'); ?>">Create an Account!</a>
+                                        <a class="small" href="<?= base_url('auth/usersRegistrasi'); ?>">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
