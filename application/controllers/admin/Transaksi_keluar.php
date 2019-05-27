@@ -54,7 +54,8 @@ class Transaksi_keluar extends CI_Controller{
 		$tk_nofak=$this->m_penjualan->get_tk_nofak();
 		$this->session->set_userdata('tk_nofak',$tk_nofak);
 
-		$order_proses=$this->m_penjualan->simpan_transaksi_keluar($tk_nofak,$tm_nofak,$total_sepatu,$total,$jml_uang,$kembalian,$idm,$nama);
+		$order_proses=$this->m_penjualan->simpan_transaksi_keluar($tk_nofak,$tm_nofak,
+			$total_sepatu,$total,$jml_uang,$kembalian,$idm,$nama);
 
 		
 		// if(!empty($jml_uang)) {
