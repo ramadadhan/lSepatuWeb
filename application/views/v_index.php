@@ -24,8 +24,6 @@
         <div class="container">
             <div class="col-lg-9">
                 <div class="mainbody-section text-center">
-
-
                     <div class="row">
 
                       <?php foreach($menu as $m) : ?>
@@ -33,8 +31,8 @@
                             <div class="menu-item blue" style="height:150px;">
                                 <a href="" data-toggle="modal">
                                     <!-- <i class="fa fa-cart-plus"></i> -->
-                                  <?php echo $m['menu_icon']; ?>
-                                    <p style="text-align:left;font-size:14px;padding-left:5px;"><?= $m['menu_title']; ?></p>
+                                    <?= $m['menu_icon']; ?>
+                                    <p style="text-align:left; font-size:14px; padding-left:5px;"><?= $m['menu_title']; ?></p>
                                 </a>
                             </div>
                         </div>
