@@ -51,6 +51,7 @@
 		<!-- Projects Row -->
 		<div class="row">
 			<div class="col-lg-12">
+                
 				<form action="<?php //echo base_url().'admin/transaksi_keluar/simpan_transaksi_keluar'?>" method="post">
 					<table>
 						<tr>
@@ -258,7 +259,18 @@
 			</div>
 
 			<!--END MODAL-->
-		
+		<!-- ============ MODAL ADD =============== -->
+        <div class="modal fade" id="lap_perbulan" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 class="modal-title" id="myModalLabel">Pilih Bulan</h3>
+            </div>
+            
+            </div>
+            </div>
+        </div>
 
         
 
