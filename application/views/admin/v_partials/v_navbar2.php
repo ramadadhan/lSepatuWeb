@@ -1,5 +1,5 @@
 <?php
-	$this->load->view("admin/v_partials/v_navbar_header")
+	$this->load->view("admin/v_partials/v_navbar_header");
 ?>
 
 <div class="menu"><p id="tagname"></p><span></span></div>
@@ -12,7 +12,7 @@
 				<li><a target="_blank" href="https://www.facebook.com/ravi7284007">Data User</a></li>
 				<li><a target="_blank" href="https://500px.com/ravi7284007">Data Pengeluaran</a></li>
 				<li><a target="_blank" href="https://www.instagram.com/ravi_singh_7/">Laporan</a></li>
-				<li><a target="_blank" href="<?= base_url('auth/usersLogout');  ?>">Logout</a></li>
+				<li><a href="<?= base_url('auth/usersLogout');  ?>">Logout</a></li>
 		</ul>
 </nav>
 <div class="overlay"></div>
