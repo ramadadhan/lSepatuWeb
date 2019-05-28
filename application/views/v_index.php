@@ -3,7 +3,7 @@
     //QUERY MENU
     $level = $this->session->userdata('users_level');
     $queryMenu =
-      "SELECT tbl_menu.menu_id, tbl_menu.menu_title, tbl_menu.menu_icon
+      "SELECT tbl_menu.menu_id, tbl_menu.menu_title, tbl_menu.menu_icon, tbl_menu.menu_url
       FROM tbl_menu JOIN tbl_menu_akses
       ON tbl_menu.menu_id = tbl_menu_akses.akses_menu_id
       WHERE tbl_menu_akses.akses_level_id = $level
@@ -29,7 +29,7 @@
                       <?php foreach($menu as $m) : ?>
                         <div class="col-md-3 portfolio-item">
                             <div class="menu-item blue" style="height:150px;">
-                                <a href="" data-toggle="modal">
+                                <a href="<?= base_url($m['menu_url']); ?>">
                                     <!-- <i class="fa fa-cart-plus"></i> -->
                                     <?= $m['menu_icon']; ?>
                                     <p style="text-align:left; font-size:14px; padding-left:5px;"><?= $m['menu_title']; ?></p>

@@ -14,38 +14,38 @@
 	<!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet"> 
+	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>"> 
-    
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
 
-<?php 
-        $this->load->view('admin/navbar');
+
+<?php
+        $this->load->view('admin/v_partials/v_navbar2');
    ?>
-
+<!--
 <ol class="breadcrumb">
   <li><a href="#">Home</a></li>
   <li><a href="#">Library</a></li>
   <li class="active">Laporan</li>
-</ol>
+</ol> -->
 
 <!-- page content -->
 <div class="container">
 	<!-- page heading -->
-	
-    
+
+
 
         <div class="row">
-            
+
                 <div class="section">
                 <div class="table-responsive">
                     <table  class="table table-bordered" style="font-size:13px;margin-top:10px;">
 	<title>Laporan</title>
-    
+
     <link rel="stylesheet" href="<?php echo base_url('jquery-ui/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
     <script src="<?php echo base_url('jquery.min.js'); ?>"></script> <!-- Load file jquery -->
 </head>
@@ -107,7 +107,7 @@
         <a href="<?php echo base_url(); ?>">Reset Filter</a>
     </form>
     <hr />
-    
+
     <b><?php echo $ket; ?></b><br /><br />
     <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br /><br />
 
@@ -131,7 +131,7 @@
     	$no = 1;
     	foreach($tbl_transaksi_keluar as $data){
             $tgl = date('d-m-Y', strtotime($data->tk_tanggal));
-            
+
     		echo "<tr>";
         echo "<td>".$data->tk_nofak."</td>";
         echo "<td>".$tgl."</td>";
@@ -145,13 +145,13 @@
         echo "<td>".$data->tk_nama."</td>";
         echo "<td>".$data->tk_alamat."</td>";
         echo "<td>".$data->tk_no_telp."</td>";
-        
+
         echo "</tr>";
     		$no++;
     	}
     }
     ?>
-    
+
     <script src="<?php echo base_url('jquery-ui/jquery-ui.min.js'); ?>"></script> <!-- Load file plugin js jquery-ui -->
     <script>
     $(document).ready(function(){ // Ketika halaman selesai di load

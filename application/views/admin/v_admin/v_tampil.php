@@ -14,16 +14,16 @@
 	<!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet"> 
+	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>"> 
-    
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
+
 </head>
-<?php 
+<?php
         $this->load->view('admin/navbar');
    ?>
 
@@ -39,21 +39,21 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Data Admin</h1>
-			
+
 		</div>
-		
+
 	</div>
-	
+
     <div class="mainbody-section text-center">
 
         <div class="row">
-            
+
                 <div class="section">
                 <div class="table-responsive">
                     <table  class="table table-bordered" style="font-size:13px;margin-top:10px;">
 
 	<center><?php echo anchor('admin/user_admin/tambah','Tambah Data'); ?></center>
-	
+
 		<tr>
 			<th>No</th>
 			<th>Tanggal Daftar</th>
@@ -64,9 +64,9 @@
 			<th>Status</th>
 			<th>Action</th>
 		</tr>
-		<?php 
+		<?php
 		$no = 1;
-		foreach($tbl_admin as $a){ 
+		foreach($tbl_admin as $a){
 		?>
 		<tr>
 			<td><?php echo $no++ ?></td>

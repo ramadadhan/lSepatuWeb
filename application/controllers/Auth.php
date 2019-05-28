@@ -64,7 +64,7 @@ class Auth extends CI_Controller {
                             redirect('Owner');
                           } else  if ($users['users_level'] == 2) {
                               redirect('Pegawai');
-                          } else if ($users['users_level'] == 3){
+                          } else if ($users['users_level'] == 3) {
                             redirect('User');
                         } else {
                           redirect('auth');

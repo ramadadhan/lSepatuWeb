@@ -14,24 +14,24 @@
 	<!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet"> 
+	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>"> 
-    
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
+
 </head>
-<?php 
-        $this->load->view('admin/navbar');
+<?php
+        $this->load->view('admin/v_partials/v_navbar2');
    ?>
 
-<ol class="breadcrumb">
+<!-- <ol class="breadcrumb">
   <li><a href="#">Home</a></li>
   <li><a href="#">Library</a></li>
   <li class="active">Data</li>
-</ol>
+</ol> -->
 
 <!-- page content -->
 <div class="container">
@@ -39,15 +39,15 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Data Pengeluaran</h1>
-			<?php echo anchor('admin/data_pengeluaran/tambah','Tambah Data'); ?>	
+			<?php echo anchor('admin/data_pengeluaran/tambah','Tambah Data'); ?>
 		</div>
-		
+
 	</div>
-	
+
     <div class="mainbody-section text-center">
 
         <div class="row">
-            
+
                 <div class="section">
                 <div class="table-responsive">
                     <table  class="table table-bordered" style="font-size:13px;margin-top:10px;">
@@ -59,12 +59,12 @@
                                 <th style="text-align:center;">Nama Pengeluaran</th>
                                 <th style="text-align:center;">harga</th>
                                 <th style="text-align:center;">keterangan</th>
-                                <th style="text-align:center;">Aksi</th>             	         	
+                                <th style="text-align:center;">Aksi</th>
                             </tr>
                         </thead>
-                        <?php 
+                        <?php
                                 $no = 1;
-                                foreach($tbl_pengeluaran as $pe){ 
+                                foreach($tbl_pengeluaran as $pe){
                                 ?>
                                 <tr>
                                     <td style="text-align:center;"><?php echo $no++ ?></td>
@@ -82,10 +82,10 @@
 
                     </table>
                 </div>
-            </div>  
+            </div>
 
         </div>
-        
+
     </div>
 </div>
 
@@ -93,7 +93,7 @@
 
 <body>
 <!-- jQuery -->
-    <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script> 
+    <script src="<?php echo base_url().'assets/js/jquery.js'?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -108,4 +108,3 @@
 
 </body>
 </html>
-
