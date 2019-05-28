@@ -4,13 +4,13 @@
         function __construct(){
             parent::__construct();
                
-            $this->load->model('m_pengeluaran');
+                $this->load->model('m_pengeluaran');
                 $this->load->helper('url');
             }
     
     
         function index () {
-            $data['tbl_pengeluaran'] = $this->m_pengeluaran->tampil_paket()->result();    
+            $data['tbl_pengeluaran'] = $this->m_pengeluaran->tampil_data()->result();    
             $this->load->view('admin/v_pengeluaran/v_data_pengeluaran', $data);
         }
 
@@ -18,11 +18,15 @@
             $this->load->view('admin/v_pengeluaran/v_tambah');
         }
         function tambah_aksi(){
+            $pengeluaran_id = $this->input->post('pengeluaran_id');
+            $pengeluaran_tanggal = $this->input->post('pengeluaran_tanggal');
             $pengeluaran_nama = $this->input->post('pengeluaran_nama');
             $pengeluaran_harga = $this->input->post('pengeluaran_harga');
             $pengeluaran_keterangan = $this->input->post('pengeluaran_keterangan');
     
             $data = array(
+                'pengeluaran_id' => $pengeluaran_id,
+                'pengeluaran_tanggal' => $pengeluaran_tanggal,
                 'pengeluaran_nama' => $pengeluaran_nama,
                 'pengeluaran_harga' => $pengeluaran_harga,
                 'pengeluaran_keterangan' => $pengeluaran_keterangan
@@ -38,13 +42,16 @@
         }
 
         function edit($pengeluaran_id){
+            // $where = array('pengeluaran_id' => $pengeluaran_id);
+            // $data['tbl_pengeluaran'] = $this->m_pengeluaran->edit_data($where,'tbl_pengeluaran')->result();
+            // $this->load->view('admin/v_pengeluaran/v_edit',$data);
             $where = array('pengeluaran_id' => $pengeluaran_id);
             $data['tbl_pengeluaran'] = $this->m_pengeluaran->edit_data($where,'tbl_pengeluaran')->result();
             $this->load->view('admin/v_pengeluaran/v_edit',$data);
         }
 
         function update(){
-            $pengeluaran_id = $this->input->post('pengeluaran_id');
+           
             $pengeluaran_tanggal = $this->input->post('pengeluaran_tanggal');
             $pengeluaran_nama = $this->input->post('pengeluaran_nama');
             $pengeluaran_harga = $this->input->post('pengeluaran_harga');
