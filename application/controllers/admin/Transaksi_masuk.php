@@ -76,18 +76,26 @@ class Transaksi_masuk extends CI_Controller{
 
 		$order_proses=$this->m_penjualan->simpan_transaksi_masuk($tm_nofak,$total,$total_sepatu,$keterangan,$id_member,$nama,$alamat,$no_telp);
 
-		if($order_proses){
+		if ($order_proses) {
 			$this->cart->destroy();
-			//$this->load->view('admin/alert/alert_sukses');
+			
 			redirect('admin/transaksi_masuk');
 		} else {
 
 			redirect('admin/transaksi_masuk');
 		}
 
+		
+
+		// if($order_proses){
+		// 	$this->cart->destroy();
+		
+		// 	redirect('admin/transaksi_masuk');
+		// } 
 
 
-	}
+
+	} 
 
 
 

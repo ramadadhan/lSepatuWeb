@@ -54,7 +54,7 @@
 		<div class="row">
 			<div class="col-lg-12">
                 
-				<form action="<?php //echo base_url().'admin/transaksi_keluar/simpan_transaksi_keluar'?>" method="post">
+				<form action="<?php echo base_url().'admin/transaksi_keluar'?>" method="post">
 					<table>
 						<tr>
 							<th>Kode Transaksi Masuk</th>
@@ -221,6 +221,7 @@
 			                            <th style="width:150px;">Total Harga</th>
 			                            <th style="width:100px;">Nama Pelanggan</th>
 			                            <th style="width:100px;">Status</th>
+                                       
 
 
 
@@ -247,6 +248,8 @@
                             <td style="text-align:right;"><?php echo 'Rp '.number_format($total);?></td>
                             <td style="text-align:right;"><?php echo $nama_pelanggan;?></td>
                             <td style="text-align:right;"><?php echo $tm_status;?></td>
+                            
+                            <!-- <td><button type="submit" class="btn btn-sm btn-primary">Ok</button></td> -->
 
 
                             </form>

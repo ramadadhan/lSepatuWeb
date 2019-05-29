@@ -122,7 +122,7 @@
                 </tr>
                 <tr>
                     <th>ID Member</th>
-                    <th style="text-align:right;"><input type="text" id="idm" name="idm" class="form-control input-sm" placeholder="Jika ada" style="margin-bottom:5px;" ></th>
+                    <th style="text-align:right;"><input type="text" id="id_member" name="id_member" class="form-control input-sm" placeholder="Jika tidak ada isi 0" value="0" style="margin-bottom:5px;" ></th>
                    
                 </tr>
                 <tr>
