@@ -11,17 +11,17 @@ class Auth extends CI_Controller {
 
     }
 
-    public function goToDefaultPage()
-    {
-      if ($this->session->userdata('users_level') == 1) {
-        redirect('Owner');
-      } else if ($this->session->userdata('users_level') == 2) {
-        redirect('Pegawai');
-      } else if ($this->sessions->userdata('users_level') == 3) {
-        redirect('User');
-      }
-
-    }
+    // public function goToDefaultPage()
+    // {
+    //   if ($this->session->userdata('users_level') == 1) {
+    //     redirect('Owner');
+    //   } else if ($this->session->userdata('users_level') == 2) {
+    //     redirect('Pegawai');
+    //   } else if ($this->sessions->userdata('users_level') == 3) {
+    //     redirect('Customer');
+    //   }
+    //
+    // }
 
 
     public function index()
@@ -32,7 +32,7 @@ class Auth extends CI_Controller {
 
         if( $this->form_validation->run() == false )
         {
-            $data['title'] = 'Halaman Login';
+            $data['title'] = 'LSEPATU';
             $this->load->view('auth/v_partials/v_auth_header',$data);
             $this->load->view('auth/v_login');
             $this->load->view('auth/v_partials/v_auth_footer');
@@ -65,7 +65,7 @@ class Auth extends CI_Controller {
                           } else  if ($users['users_level'] == 2) {
                               redirect('Pegawai');
                           } else if ($users['users_level'] == 3) {
-                            redirect('User');
+                            redirect('Customer');
                         } else {
                           redirect('auth');
                         }
@@ -126,8 +126,7 @@ class Auth extends CI_Controller {
 
               $users_email = $this->input->post('users_email','true');
               $token = base64_encode(random_bytes(32));
-              $tbl_token =
-              [
+              $tbl_token =  [
                   'tk_email' => $users_email,
                   'tk_token' => $token,
                   'tk_time' => time()
@@ -280,9 +279,10 @@ class Auth extends CI_Controller {
               } else {
                 $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Email/User tidak teregistrasi!</div>');
                 redirect('auth/forgotPassword');
+              }
 
-          }
       }
+
     }
 
 

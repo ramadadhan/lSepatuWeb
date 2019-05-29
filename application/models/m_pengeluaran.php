@@ -2,7 +2,7 @@
 
 class M_pengeluaran extends CI_Model{
 
-	function tampil_paket(){
+	function tampil_data(){
 		return $this->db->get('tbl_pengeluaran');
     }
 	function input_data($data,$table){

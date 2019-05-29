@@ -1,5 +1,5 @@
 <?php
-class User extends CI_Controller{
+class Customer extends CI_Controller{
 	function __construct()
 	{
 			parent::__construct();

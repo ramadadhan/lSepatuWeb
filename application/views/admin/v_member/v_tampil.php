@@ -58,28 +58,29 @@
 			<th>No</th>
 			<th>Tanggal Daftar</th>
 			<th>Nama</th>
-			<th>Alamat</th>
-			<th>No. Hp</th>
-			<th>Username</th>
 			<th>Password</th>
+			<th>Email</th>
+			<th>Level</th>
+			<th>Status</th>
 			<th>Action</th>
 		</tr>
 		<?php 
 		$no = 1;
-		foreach($tbl_user as $u){ 
+		foreach($tbl_users as $u){ 
 		?>
 		<tr>
 			<td><?php echo $no++ ?></td>
-			<td><?php echo $u->user_tanggal ?></td>
-			<td><?php echo $u->user_nama ?></td>
-			<td><?php echo $u->user_alamat ?></td>
-			<td><?php echo $u->user_no_telp ?></td>
-			<td><?php echo $u->user_username ?></td>
+			<td><?php echo $u->users_tanggal ?></td>
+			<td><?php echo $u->users_nama ?></td>
 			<td><?php echo password_hash("secret password", PASSWORD_DEFAULT) ?></td>
+			<td><?php echo $u->users_email ?></td>
+			<td><?php echo $u->users_level ?></td>
+			<td><?php echo $u->users_status ?></td>
+			
 			<td>
-			      <?php echo anchor('admin/user_member/edit/'.$u->user_id,'Edit'); ?>
+			      <?php echo anchor('admin/user_member/edit/'.$u->users_id,'Edit'); ?>
 				  
-                              <?php echo anchor('admin/user_member/hapus/'.$u->user_id,'Hapus'); ?>
+                              <?php echo anchor('admin/user_member/hapus/'.$u->users_id,'Hapus'); ?>
 			</td>
 		</tr>
 		<?php } ?>

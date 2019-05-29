@@ -64,18 +64,22 @@
                         </thead>
                         <?php
                                 $no = 1;
+<<<<<<< HEAD
                                 foreach($tbl_pengeluaran as $pe){
+=======
+                                foreach($tbl_pengeluaran as $p){ 
+>>>>>>> 7c5dffdba1e3ef5b9f57ef496384642192e15bf4
                                 ?>
                                 <tr>
                                     <td style="text-align:center;"><?php echo $no++ ?></td>
-                                    <td><?php echo $pe->pengeluaran_id ?></td>
-                                    <td><?php echo $pe->pengeluaran_tanggal ?></td>
-                                    <td><?php echo $pe->pengeluaran_nama ?></td>
-                                    <td><?php echo $pe->pengeluaran_harga ?></td>
-                                    <td><?php echo $pe->pengeluaran_keterangan ?></td>
+                                    <td><?php echo $p->pengeluaran_id ?></td>
+                                    <td><?php echo $p->pengeluaran_tanggal ?></td>
+                                    <td><?php echo $p->pengeluaran_nama ?></td>
+                                    <td><?php echo $p->pengeluaran_harga ?></td>
+                                    <td><?php echo $p->pengeluaran_keterangan ?></td>
                                     <td>
-                                        <?php echo anchor('admin/data_pengeluaran/edit/'.$pe->pengeluaran_id,'Edit'); ?>
-                                        <?php echo anchor('admin/data_pengeluaran/hapus/'.$pe->pengeluaran_id,'Hapus'); ?>
+                                        <?php echo anchor('admin/data_pengeluaran/edit/'.$p->pengeluaran_id,'Edit'); ?>
+                                        <?php echo anchor('admin/data_pengeluaran/hapus/'.$p->pengeluaran_id,'Hapus'); ?>
                                     </td>
                                 </tr>
                                 <?php } ?>

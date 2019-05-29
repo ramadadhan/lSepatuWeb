@@ -2,7 +2,8 @@
  
 class M_member extends CI_Model{
 	function tampil_data(){
-		return $this->db->get('tbl_user');
+		$query= $this->db->query("select * from tbl_users where users_level ='3'");
+		return $query;
     }
     
     function input_data($data,$table){

@@ -53,33 +53,33 @@
                 
 	
 	<div class="card-body">
-	<?php foreach($tbl_user as $u){ ?>
+	<?php foreach($tbl_users as $u){ ?>
 	<form action="<?php echo base_url('index.php/'). 'admin/user_member/update'; ?>" method="post">
 	
 		    
 			<div class="form-group">
 				<label>Nama</label>
 				<td>
-					<input type="hidden" name="user_id" value="<?php echo $u->user_id ?>">
-					<input type="hidden" name="user_tanggal" value="<?php echo $u->user_tanggal ?>">
-					<input class="form-control" type="text" name="user_nama" value="<?php echo $u->user_nama ?>">
+					<input type="hidden" name="users_id" value="<?php echo $u->users_id ?>">
+					<input type="hidden" name="users_tanggal" value="<?php echo $u->users_tanggal ?>">
+					<input class="form-control" type="text" name="users_nama" value="<?php echo $u->users_nama ?>">
 				</td>
 			</div>
 			<div class="form-group">
-				<label>Alamat</label>
-				<td><input class="form-control" type="text" name="user_alamat" value="<?php echo $u->user_alamat ?>"></td>
-			</div>
-			<div class="form-group">
-				<label>No. Hp</label>
-				<td><input class="form-control" type="text" name="user_no_telp" value="<?php echo $u->user_no_telp ?>"></td>
-			</div>
-			<div class="form-group">
-				<label>Username</label>
-				<td><input class="form-control" type="text" name="user_username" value="<?php echo $u->user_username ?>"></td>
-			</div>
-			<div class="form-group">
 				<label>Password</label>
-				<td><input class="form-control" type="password" name="user_password" disabled value="<?php echo $u->user_password ?>"></td>
+				<td><input class="form-control" type="text" name="users_password" disabled value="<?php echo $u->users_password ?>"></td>
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<td><input class="form-control" type="text" name="users_email" value="<?php echo $u->users_email ?>"></td>
+			</div>
+			<div class="form-group">
+				<label>Level</label>
+				<td><input class="form-control" type="text" name="users_level" value="<?php echo $u->users_level ?>"></td>
+			</div>
+			<div class="form-group">
+				<label>Status</label>
+				<td><input class="form-control" type="password" name="users_status"  value="<?php echo $u->users_status ?>"></td>
 			</div>
             
 			<tr>
