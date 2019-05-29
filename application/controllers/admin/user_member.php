@@ -10,7 +10,7 @@ class user_Member extends CI_Controller{
 	}
  
 	function index(){
-		$data['tbl_user'] = $this->m_member->tampil_data()->result();
+		$data['tbl_users'] = $this->m_member->tampil_data()->result();
 		$this->load->view('admin/v_member/v_tampil',$data);
     }
     
@@ -19,59 +19,63 @@ class user_Member extends CI_Controller{
     }
     
     function tambah_aksi(){
-    $nama = $this->input->post('user_nama');
-    $alamat = $this->input->post('user_alamat');
-    $no_telp = $this->input->post('user_no_telp');
-		$username = $this->input->post('user_username');
-    $password =$this->input->post('user_password');
+    $nama = $this->input->post('users_nama');
+    $password =$this->input->post('users_password');
+    $email = $this->input->post('users_email');
+    $level = $this->input->post('users_level');
+    $status = $this->input->post('users_status');
+	
+    
 
  
 		$data = array(
-			'user_nama' => $nama,
-			'user_alamat' => $alamat,
-      'user_no_telp' => $no_telp,
-      'user_username' => $username,
-      'user_password' => $password
+			'users_nama' => $nama,
+			'users_password' => $password,
+      'users_email' => $email,
+      'users_level' => $level,
+      'users_status' => $status
 			);
-		$this->m_member->input_data($data,'tbl_user');
+		$this->m_member->input_data($data,'tbl_users');
 		redirect('admin/user_member/index');
     }
     
-    function hapus($user_id){
-		$where = array('user_id' => $user_id);
-		$this->m_member->hapus_data($where,'tbl_user');
+    function hapus($users_id){
+		$where = array('users_id' => $users_id);
+		$this->m_member->hapus_data($where,'tbl_users');
 		redirect('admin/user_member/index');
     }
     
-    function edit($user_id){
-		$where = array('user_id' => $user_id);
-		$data['tbl_user'] = $this->m_member->edit_data($where,'tbl_user')->result();
+    function edit($users_id){
+		$where = array('users_id' => $users_id);
+		$data['tbl_users'] = $this->m_member->edit_data($where,'tbl_users')->result();
 		$this->load->view('admin/v_member/v_edit',$data);
     }
     
     function update(){
-        $user_id = $this->input->post('user_id');
-        $tanggal = $this->input->post('user_tanggal');
-        $nama = $this->input->post('user_nama');
-        $alamat = $this->input->post('user_alamat');
-        $no_telp = $this->input->post('user_no_telp');
-		    $username = $this->input->post('user_username');
-        $password = $this->input->post('user_password');
-        
+        $users_id = $this->input->post('users_id');
+        $tanggal = $this->input->post('users_tanggal');
+        $nama = $this->input->post('users_nama');
+    $password =$this->input->post('users_password');
+    $email = $this->input->post('users_email');
+    $level = $this->input->post('users_level');
+    $status = $this->input->post('users_status');
+	
     
-        $data = array(
-          'user_nama' => $nama,
-          'user_alamat' => $alamat,
-          'user_no_telp' => $no_telp,
-          'user_username' => $username,
-          'user_password' => $password
-        );
+
+ 
+		$data = array(
+			'users_nama' => $nama,
+			'users_password' => $password,
+      'users_email' => $email,
+      'users_level' => $level,
+      'users_status' => $status
+			);
     
         $where = array(
-            'user_id' => $user_id
+            'users_id' => $users_id
         );
     
-        $this->m_member->update_data($where,$data,'tbl_user');
+        $this->m_member->update_data($where,$data,'tbl_users');
         redirect('admin/user_member/index');
     }
     function logout(){

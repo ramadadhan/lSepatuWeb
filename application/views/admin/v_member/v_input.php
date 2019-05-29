@@ -58,23 +58,23 @@
 			
 			<div class="form-group">
 				<label>Nama</label>
-				<td><input class="form-control" type="text" name="user_nama"></td>
+				<td><input class="form-control" type="text" name="users_nama"></td>
 			</div>
 			<div class="form-group">
-				<label>Alamat</label>
-				<td><input class="form-control" type="text" name="user_alamat"></td>
+				<label>Password</label>
+				<td><input class="form-control" type="text" name="users_password"></td>
 			</div>
 			<div class="form-group">
-				<label>No. Hp</label>
-				<td><input class="form-control" type="text" name="user_no_telp"></td>
+				<label>Email</label>
+				<td><input class="form-control" type="text" name="users_email"></td>
 			</div>
 			<div class="form-group">
-				<label>Username</label>
-				<td><input class="form-control" type="text" name="user_username"></td>
+				<label>Level</label>
+				<td><input class="form-control" type="text" name="users_level"></td>
 			</div>
             <div class="form-group">
-				<label>Password</label>
-				<td><input class="form-control" type="password" name="user_password"></td>
+				<label>Staus</label>
+				<td><input class="form-control" type="password" name="users_status"></td>
 			</div>
 			
 			<tr>
