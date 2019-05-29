@@ -78,11 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-<<<<<<< HEAD
-	'database' => 'db_lsepatu_fix_1',
-=======
 	'database' => 'db_lsepatu_fix',
->>>>>>> 45820b538fcf85fc45772f8cd9e3590e4aed01b9
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
