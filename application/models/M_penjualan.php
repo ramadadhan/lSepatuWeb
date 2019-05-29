@@ -35,10 +35,10 @@ function get_tm_nofak(){
 
 	function simpan_transaksi_masuk($tm_nofak,$total,$total_sepatu,$keterangan,$id_member,$nama,$alamat,$no_telp){
 
-		$admin_id="2";
+		$tm_users_id_peg="2";
 		$this->db->query("INSERT INTO tbl_transaksi_masuk(
-				tm_nofak,tm_total_sepatu,tm_total,tm_admin_id,tm_keterangan,tm_user_id,tm_nama,tm_alamat,tm_no_telp)
-				VALUES ('$tm_nofak','$total_sepatu','$total','$admin_id','$keterangan','$id_member','$nama','$alamat','$no_telp')");
+				tm_nofak,tm_total_sepatu,tm_total,tm_users_id_peg,tm_keterangan,tm_users_id_cus,tm_nama,tm_alamat,tm_no_telp)
+				VALUES ('$tm_nofak','$total_sepatu','$total','$tm_users_id_peg','$keterangan','$id_member','$nama','$alamat','$no_telp')");
 		foreach ($this->cart->contents() as $item) {
 
 			$data = array(
