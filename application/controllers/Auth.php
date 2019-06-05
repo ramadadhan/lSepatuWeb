@@ -11,18 +11,6 @@ class Auth extends CI_Controller {
 
     }
 
-    // public function goToDefaultPage()
-    // {
-    //   if ($this->session->userdata('users_level') == 1) {
-    //     redirect('Owner');
-    //   } else if ($this->session->userdata('users_level') == 2) {
-    //     redirect('Pegawai');
-    //   } else if ($this->sessions->userdata('users_level') == 3) {
-    //     redirect('Customer');
-    //   }
-    //
-    // }
-
 
     public function index()
     {
@@ -57,14 +45,14 @@ class Auth extends CI_Controller {
                 if(password_verify($users_password, $users['users_password'])){
                     $data = [
                         'users_email' => $users['users_email'],
-                        'users_level' => $users['users_level']
+                        'users_level_id' => $users['users_level_id']
                     ];
                     $this->session->set_userdata($data);
-                        if($users['users_level'] == 1) {
+                        if($users['users_level_id'] == 1) {
                             redirect('Owner');
-                          } else  if ($users['users_level'] == 2) {
+                          } else  if ($users['users_level_id'] == 2) {
                               redirect('Pegawai');
-                          } else if ($users['users_level'] == 3) {
+                          } else if ($users['users_level_id'] == 3) {
                             redirect('Customer');
                         } else {
                           redirect('auth');
@@ -235,7 +223,7 @@ class Auth extends CI_Controller {
     public function usersLogout()
     {
       $this->session->unset_userdata('users_email');
-      $this->session->unset_userdata('users_level');
+      $this->session->unset_userdata('users_level_id');
       // $this->session->sess_destroy();
 
 

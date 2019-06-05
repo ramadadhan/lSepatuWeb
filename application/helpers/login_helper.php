@@ -7,7 +7,7 @@ function is_logged_in()
       redirect('auth');
 
     } else {
-        $level_id = $ci->session->userdata('users_level');
+        $level_id = $ci->session->userdata('users_level_id');
         $menu = $ci->uri->segment(1);
 
          $queryMenu = $ci->db->get_where('tbl_menu',['menu_title' => $menu])->row_array();

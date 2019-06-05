@@ -1,7 +1,7 @@
 
 <?php
     //QUERY MENU
-    $level = $this->session->userdata('users_level');
+    $level = $this->session->userdata('users_level_id');
     $queryMenu =
       "SELECT tbl_menu.menu_id, tbl_menu.menu_title, tbl_menu.menu_icon, tbl_menu.menu_url
       FROM tbl_menu JOIN tbl_menu_akses
