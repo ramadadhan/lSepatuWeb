@@ -10,7 +10,8 @@ class Pegawai extends CI_Controller{
 					$this->load->library('form_validation');
 					$this->load->model('M_pegawai');
 			}
-
+			
+		//view
 		public function index()
     {
         $data['title'] = 'Home';
@@ -25,6 +26,7 @@ class Pegawai extends CI_Controller{
 
 			 }
 
+		// input
 		public function registCustomer()
 		{
 
@@ -69,6 +71,8 @@ class Pegawai extends CI_Controller{
 
 
 		}
+
+
 
 		private function _sendEmail($token,$type)
 		{
