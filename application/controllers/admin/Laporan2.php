@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         function index() {
-        	$data['lap_bulan']=$this->M_laporan->get_lap_bulan();
+        	// $data['lap_bulan']=$this->M_laporan->get_lap_bulan();
         	$this->load->view('admin/v_laporanFarhan',$data);
         }
 
