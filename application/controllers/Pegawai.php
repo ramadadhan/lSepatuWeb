@@ -1,12 +1,18 @@
 <?php
-class Pegawai extends CI_Controller{
-	function __construct()
-	{
-			parent::__construct();
-		 	is_logged_in();
-			$this->load->model('M_menu');
-	}
+defined('BASEPATH') OR exit('No direct script access allowed');
 
+class Pegawai extends CI_Controller{
+
+			function __construct()
+			{
+					parent::__construct();
+				 	is_logged_in();
+					$this->load->library('form_validation');
+					$this->load->model('M_pegawai');
+			}
+
+
+		//view
 		public function index()
     {
         $data['title'] = 'Home';
@@ -21,20 +27,21 @@ class Pegawai extends CI_Controller{
 
 			 }
 
+
+		// input
 		public function registCustomer()
 		{
 
-				// if($this->session->userdata('users_email')){
-				// 	redirect('Pegawai');
-				// }
-
 				//full name
-				$this->form_validation->set_rules('users_nama','Fullname','required|trim');
+				$this->form_validation->set_rules('users_nama','Nama Lengkap','required|trim');
+
 				//Email
-				$this->form_validation->set_rules('users_email','Email','required|trim|valid_email|is_unique[tbl_users.user_email]',
+				$this->form_validation->set_rules('users_email','Email','required|trim|valid_email|is_unique[tbl_users.users_email]',
 																					['is_unique' => 'Email ini sudah digunakan!']);
+				//password1
 				$this->form_validation->set_rules('users_password1','Password','required|trim|matches[users_password2]',
 																					['matches' =>'Password tidak cocok!', 'min_length' => 'password terlalu pendek!']);
+				//password2
 				$this->form_validation->set_rules('users_password2','Password','required|trim|matches[users_password1]');
 
 				if($this->form_validation->run() == false)
@@ -42,12 +49,12 @@ class Pegawai extends CI_Controller{
 
 					$data['title'] = 'Registrasi Customer';
 					$this->load->view("admin/v_partials/v_navbar2");
-					$this->load->view('pegawai/v_regist_cust');
+					$this->load->view("pegawai/v_regist_cust");
 
 				} else {
 						$this->M_pegawai->registCustomer();
 
-						$users_email = $this->input->post('user_email','true');
+						$users_email = $this->input->post('users_email','true');
 						$token = base64_encode(random_bytes(32));
 						$tbl_token = [
 								'tk_email' => $users_email,
@@ -59,13 +66,14 @@ class Pegawai extends CI_Controller{
 						$this->_sendEmail($token,'verify');
 
 						$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
-						akun berhasil dibuat, mohon aktivasi terlebih dahulu</div>');
-						redirect('Pegawai/v_regist_cust');
+						akun berhasil dibuat, aktivasi terlebih dahulu</div>');
+						redirect('pegawai/registCustomer');
 
 				}
 
 
 		}
+
 
 		private function _sendEmail($token,$type)
 		{
@@ -109,6 +117,7 @@ class Pegawai extends CI_Controller{
 
 
 		}
+
 
 		public function verify()
 		{
