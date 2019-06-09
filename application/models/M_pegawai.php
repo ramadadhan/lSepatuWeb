@@ -5,28 +5,10 @@ class M_pegawai extends CI_Model {
 
     public function registCustomer()
     {
-      //check database
-      // $check = $this->db->query("SELECT users_id FROM tbl_users ORDER BY users_id DESC limit 1");
-      // $result = $check->num_rows();
-      // foreach($check->result() as $ck){
-      //   $id = $ck->users_id;
-      // }
-      //
-      // // $query = $this->db->get('tbl_users');
-      // if($result <> 0){
-      // //  $data = $query->row();
-      //   $kode = intval($id) + 1;
-      //   } else {
-      //     $kode = 1;
-      //   }
-
-
-      //resultId
-      //$batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
 
       $q = $this->db->query("SELECT MAX(RIGHT(users_id,4)) AS kd_max FROM tbl_users");
           $kd = "";
-          $cs = "OW";
+          $cs = "CS";
           if($q->num_rows()>0){
               foreach($q->result() as $k)
               {
@@ -38,7 +20,7 @@ class M_pegawai extends CI_Model {
               $kd = "0001";
           }
 
-           $kode_user = $cs.$kd;
+          return $kode_user = $cs.$kd;
 
       $data = [
               'users_id' => $kode_user,
@@ -53,22 +35,5 @@ class M_pegawai extends CI_Model {
 
     }
 
-
-
-
-    // public function idpegawai()
-    // {
-
-      // $this->db->select('RIGHT(tbl_users.users_id,3) as idpegawai', false);
-      // $this->db->order_by('users_id','DESC');
-      // $this->db->limit(1);
-
-      //$query = $this->db->post('users_email',true);
-
-
-      //$idtampil = "CS" . "$batas";
-      //return $idtampil;
-
-    //}
 
 }
