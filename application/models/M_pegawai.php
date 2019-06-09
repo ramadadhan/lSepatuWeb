@@ -38,7 +38,7 @@ class M_pegawai extends CI_Model {
               $kd = "0001";
           }
 
-          return $kode_user = $cs.$kd;
+           $kode_user = $cs.$kd;
 
       $data = [
               'users_id' => $kode_user,
