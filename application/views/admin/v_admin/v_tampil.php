@@ -53,13 +53,13 @@
                     <table  class="table table-bordered" style="font-size:13px;margin-top:10px;">
 
 	<center><?php echo anchor('admin/user_admin/tambah','Tambah Data'); ?></center>
-<<<<<<< HEAD
+
 
 		<tr>
-=======
-	
+
+
 	<tr>
->>>>>>> 7c5dffdba1e3ef5b9f57ef496384642192e15bf4
+
 			<th>No</th>
 			<th>Tanggal Daftar</th>
 			<th>Nama</th>
@@ -71,11 +71,11 @@
 		</tr>
 		<?php
 		$no = 1;
-<<<<<<< HEAD
+
 		foreach($tbl_admin as $a){
-=======
-		foreach($tbl_users as $u){ 
->>>>>>> 7c5dffdba1e3ef5b9f57ef496384642192e15bf4
+
+		foreach($tbl_users as $u){
+
 		?>
 		<tr>
 			<td><?php echo $no++ ?></td>
@@ -85,10 +85,10 @@
 			<td><?php echo $u->users_email ?></td>
 			<td><?php echo $u->users_level ?></td>
 			<td><?php echo $u->users_status ?></td>
-			
+
 			<td>
 			      <?php echo anchor('admin/user_admin/edit/'.$u->users_id,'Edit'); ?>
-				  
+
                               <?php echo anchor('admin/user_admin/hapus/'.$u->users_id,'Hapus'); ?>
 			</td>
 		</tr>

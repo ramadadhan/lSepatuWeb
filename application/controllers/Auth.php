@@ -14,6 +14,14 @@ class Auth extends CI_Controller {
 
     public function index()
     {
+      // if($this->session->userdata('users_level_id' == 3)){
+      //     redirect('User');
+      // } else if ($this->session->userdata('users_level_id' == 2)) {
+      //     redirect('Pegawai');
+      // } else if ($this->session->userdata('users_level_id' == 1)) {
+      //     redirect('Owner');
+      // }
+
         //form validation for field
         $this->form_validation->set_rules('users_email','email', 'trim|required|valid_email');
         $this->form_validation->set_rules('users_password', 'password','trim|required');
@@ -109,7 +117,7 @@ class Auth extends CI_Controller {
               $this->load->view('auth/v_partials/v_auth_footer');
 
           } else {
-              $this->M_auth->usersRegistrasi();
+              $this->M_auth->pgRegistrasi();
               // $this->M_auth->getToken();
 
               $users_email = $this->input->post('users_email','true');

@@ -14,10 +14,9 @@ class Owner extends CI_Controller{
 				$data['menu'] = $this->db->get_where('tbl_users', ['users_email' => $this->session->userdata('users_email')])->row_array();
 				$this->load->model('M_menu','AccessMenu');
 
-
-        $this->load->view('admin/v_partials/v_index_header',$data);
-				$this->load->view("admin/v_partials/v_navbar2");
+        $this->load->view('v_partials/v_index_header',$data);
+				$this->load->view("v_partials/v_sidebar");
         $this->load->view('v_index');
-        $this->load->view('admin/v_partials/v_index_footer');
+        $this->load->view('v_partials/v_index_footer');
 			 }
 	}

@@ -15,15 +15,14 @@ class Pegawai extends CI_Controller{
 		//view
 		public function index()
     {
+			
         $data['title'] = 'Home';
         $data['users'] = $this->db->get_where('tbl_users',['users_email' => $this->session->userdata('users_email')])->row_array();
 
-
-
-        $this->load->view('admin/v_partials/v_index_header',$data);
-				$this->load->view("admin/v_partials/v_navbar2");
+        $this->load->view('v_partials/v_index_header',$data);
+				$this->load->view("v_partials/v_sidebar");
         $this->load->view('v_index');
-        $this->load->view('admin/v_partials/v_index_footer');
+        $this->load->view('v_partials/v_index_footer');
 
 			 }
 
@@ -48,8 +47,8 @@ class Pegawai extends CI_Controller{
 				{
 
 					$data['title'] = 'Registrasi Customer';
-					$this->load->view("admin/v_partials/v_navbar2");
-					$this->load->view("pegawai/v_regist_cust");
+					$this->load->view("v_partials/v_sidebar");
+					$this->load->view("v_pegawai/v_regist_cust");
 
 				} else {
 						$this->M_pegawai->registCustomer();

@@ -14,24 +14,18 @@
 	<!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
 	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet"> 
+	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
     <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>"> 
-    
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
+
 </head>
-<?php 
+<?php
         $this->load->view('admin/navbar');
    ?>
-
-<ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data Member</li>
-</ol>
 
 <!-- page content -->
 <div class="container">
@@ -39,15 +33,15 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Data Member</h1>
-			
+
 		</div>
-		
+
 	</div>
-	
+
     <div class="mainbody-section text-center">
 
         <div class="row">
-            
+
                 <div class="section">
                 <div class="table-responsive">
                     <table  class="table table-bordered" style="font-size:13px;margin-top:10px;">
@@ -64,9 +58,9 @@
 			<th>Status</th>
 			<th>Action</th>
 		</tr>
-		<?php 
+		<?php
 		$no = 1;
-		foreach($tbl_users as $u){ 
+		foreach($tbl_users as $u){
 		?>
 		<tr>
 			<td><?php echo $no++ ?></td>
@@ -76,15 +70,19 @@
 			<td><?php echo $u->users_email ?></td>
 			<td><?php echo $u->users_level ?></td>
 			<td><?php echo $u->users_status ?></td>
-			
+
 			<td>
 			      <?php echo anchor('admin/user_member/edit/'.$u->users_id,'Edit'); ?>
-				  
-                              <?php echo anchor('admin/user_member/hapus/'.$u->users_id,'Hapus'); ?>
+
+            <?php echo anchor('admin/user_member/hapus/'.$u->users_id,'Hapus'); ?>
 			</td>
 		</tr>
 		<?php } ?>
 	</table>
+
+
+
+
 	</div>
 </body>
 </html>
