@@ -24,14 +24,9 @@
 
 
 <?php
-        $this->load->view('admin/v_partials/v_navbar2');
+        $this->load->view('v_partials/v_sidebar');
    ?>
-<!--
-<ol class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Laporan</li>
-</ol> -->
+
 
 <!-- page content -->
 <div class="container">
