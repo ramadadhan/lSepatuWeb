@@ -8,7 +8,7 @@ class M_pegawai extends CI_Model {
 
       $q = $this->db->query("SELECT MAX(RIGHT(users_id,4)) AS kd_max FROM tbl_users");
           $kd = "";
-          $cs = "CS";
+          $cs = "TS";
           if($q->num_rows()>0){
               foreach($q->result() as $k)
               {
