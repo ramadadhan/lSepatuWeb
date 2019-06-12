@@ -15,7 +15,7 @@
 <body>
 
     <b><?php echo $ket; ?></b><br /><br />
-    
+
 	<table border="1" width="100%">
 	<tr>
     <th>No. Faktur</th>
@@ -32,11 +32,11 @@
         <th>No. Telpon</th>
     </tr>
     <?php
-    if( ! empty($tbl_transaksi_keluar)){
+    if(!empty($tbl_transaksi_keluar)){
     	$no = 1;
     	foreach($tbl_transaksi_keluar as $data){
             $tgl = date('d-m-Y', strtotime($data->tk_tanggal));
-            
+
     		echo "<tr>";
         echo "<td>".$data->tk_nofak."</td>";
         echo "<td>".$tgl."</td>";
@@ -45,12 +45,12 @@
         echo "<td>".$data->tk_total."</td>";
         echo "<td>".$data->tk_jml_uang."</td>";
         echo "<td>".$data->tk_kembalian."</td>";
-        echo "<td>".$data->tk_admin_id."</td>";
-        echo "<td>".$data->tk_user_id."</td>";
+        echo "<td>".$data->tk_users_id_peg."</td>";
+        echo "<td>".$data->tk_users_id_cus."</td>";
         echo "<td>".$data->tk_nama."</td>";
         echo "<td>".$data->tk_alamat."</td>";
         echo "<td>".$data->tk_no_telp."</td>";
-        
+
         echo "</tr>";
     		$no++;
     	}

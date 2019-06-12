@@ -4,7 +4,8 @@ class Customer extends CI_Controller{
 	{
 			parent::__construct();
 		 	is_logged_in();
-			$this->load->model('M_menu');
+			$this->load->library('form_validation');
+			// $this->load->model('M_customer');
 	}
 
 	public function index()
@@ -12,11 +13,9 @@ class Customer extends CI_Controller{
         $data['title'] = 'Home';
         $data['users'] = $this->db->get_where('tbl_users',['users_email' => $this->session->userdata('users_email')])->row_array();
 
-				$this->M_menu->AccessMenu();
-
-        $this->load->view('admin/v_partials/v_index_header',$data);
-				$this->load->view("admin/v_partials/v_navbar2");
+        $this->load->view('v_partials/v_index_header',$data);
+				$this->load->view("v_partials/v_sidebar");
         $this->load->view('v_index');
-        $this->load->view('admin/v_partials/v_index_footer');
+        $this->load->view('v_partials/v_index_footer');
 			 }
 	}

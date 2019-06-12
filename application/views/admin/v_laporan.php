@@ -100,8 +100,9 @@
 
         <button type="submit">Tampilkan</button>
         <a href="<?php echo base_url(); ?>">Reset Filter</a>
+
     </form>
-    <hr />
+    <hr/>
 
     <b><?php echo $ket; ?></b><br /><br />
     <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br /><br />
@@ -135,8 +136,8 @@
         echo "<td>".$data->tk_total."</td>";
         echo "<td>".$data->tk_jml_uang."</td>";
         echo "<td>".$data->tk_kembalian."</td>";
-        echo "<td>".$data->tk_admin_id."</td>";
-        echo "<td>".$data->tk_user_id."</td>";
+        echo "<td>".$data->tk_users_id_peg."</td>";
+        echo "<td>".$data->tk_users_id_cus."</td>";
         echo "<td>".$data->tk_nama."</td>";
         echo "<td>".$data->tk_alamat."</td>";
         echo "<td>".$data->tk_no_telp."</td>";
