@@ -9,8 +9,8 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="description" content="Produk By instagram.com/farhan_rizal_h/">
     <meta name="author" content="Farhan Rizal Hidayat">
-    <title>Data Pengeluaran</title>
 
+    <title><?= $title; ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
@@ -36,8 +36,7 @@ $this->load->view('v_partials/v_sidebar');
         <!-- page heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Data Pengeluaran</h1>
-                <a href="<?= base_url('admin/data_pengeluaran/tambah');?>" class="btn btn-primary" ; style="text-transform:none">Tambah Data</a>
+                <h1 class="page-header"><?= $title; ?></h1>
 
             </div>
         </div>
@@ -49,30 +48,35 @@ $this->load->view('v_partials/v_sidebar');
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">ID Pengeluaran</th>
-                                <th scope="col">Tanggal Pengeluaran</th>
-                                <th scope="col">Nama Pengeluaran</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Keterangan</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col">ID Customer</th>
+                                <th scope="col">Tanggal Daftar</th>
+                                <th scope="col">Nama Customer</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Foto</th>
+                                <!-- <th scope="col">Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
+
+                        <?php
                         $no = 1;
-                        foreach($tbl_pengeluaran as $p):
+                        foreach($customer as $c):
                         ?>
                             <tr>
                                 <td style="text-align:center;"><?= $no++; ?></td>
-                                <td><?= $p->pengeluaran_id; ?></td>
-                                <td><?= $p->pengeluaran_tanggal; ?></td>
-                                <td><?= $p->pengeluaran_nama; ?></td>
-                                <td><?= $p->pengeluaran_harga; ?></td>
-                                <td><?= $p->pengeluaran_keterangan; ?></td>
+                                <td><?= $c['users_id']; ?></td>
+                                <td><?= $c['users_tanggal']; ?></td>
+                                <td><?= $c['users_nama']; ?></td>
+                                <td><?= $c['users_email']; ?></td>
                                 <td>
-                                    <a href="<?= base_url('admin/data_pengeluaran/edit/'.$p->pengeluaran_id);  ?>" class="btn btn-success btn-sm mr-2">Edit</a>
-                                    <a href="<?= base_url('admin/data_pengeluaran/hapus/'.$p->pengeluaran_id);  ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                  <?//= base_url('assets/img/profil/') . $c['users_image']; ?>
+
+                                  <img class="rounded-circle" style="width:70px"  src="<?= base_url('assets/img/profil/') . $c['users_image']; ?>">
                                 </td>
+                                <!-- <td>
+                                    <a href="<?//= base_url('admin/data_pengeluaran/edit/'.$p->pengeluaran_id);  ?>" class="btn btn-success btn-sm mr-2">Edit</a>
+                                    <a href="<?//= base_url('admin/data_pengeluaran/hapus/'.$p->pengeluaran_id);  ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                </td> -->
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

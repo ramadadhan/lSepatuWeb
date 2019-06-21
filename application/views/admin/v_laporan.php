@@ -1,93 +1,63 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<meta charset="utf-8">
-	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <meta name="description" content="Produk By instagram.com/farhan_rizal_h/">
-	<meta name="author" content="Farhan Rizal Hidayat">
-	<title>Laporan</title>
-
-
-	<!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url().'assets/css/bootstrap.min.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/style.css'?>" rel="stylesheet">
-	<link href="<?php echo base_url().'assets/css/font-awesome.css'?>" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="<?php echo base_url().'assets/css/4-col-portfolio.css'?>" rel="stylesheet">
-    <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.min.css'?>" rel="stylesheet">
-    <link href="<?php echo base_url().'assets/css/jquery.dataTables.min.css'?>" rel="stylesheet">
-    <link href="<?php echo base_url().'assets/dist/css/bootstrap-select.css'?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap-datetimepicker.min.css'?>">
-
-
-<?php
-        $this->load->view('v_partials/v_sidebar');
-   ?>
-
 
 <!-- page content -->
 <div class="container">
 	<!-- page heading -->
+ <div class="row">
+   <div class="col-md-12">
+      <div class="section">
+        <!-- <div class="table-responsive"> -->
+            <!-- <table  class="table table-bordered" style="font-size:13px;margin-top:10px;"> -->
+          <title>Laporan</title>
 
+          <link rel="stylesheet" href="<?php echo base_url('jquery-ui/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
+          <script src="<?php echo base_url('jquery.min.js'); ?>"></script> <!-- Load file jquery -->
 
-
-        <div class="row">
-
-                <div class="section">
-                <div class="table-responsive">
-                    <table  class="table table-bordered" style="font-size:13px;margin-top:10px;">
-	<title>Laporan</title>
-
-    <link rel="stylesheet" href="<?php echo base_url('jquery-ui/jquery-ui.min.css'); ?>" /> <!-- Load file css jquery-ui -->
-    <script src="<?php echo base_url('jquery.min.js'); ?>"></script> <!-- Load file jquery -->
-</head>
-<body>
-
-
-    <h2>Data Transaksi</h2><hr>
-
+          <h2>Data Transaksi</h2>
     <form method="get" action="">
-        <label>Filter Berdasarkan</label><br>
-        <select name="filter" id="filter">
-            <option value="">Pilih</option>
-            <option value="1">Per Tanggal</option>
-            <option value="2">Per Bulan</option>
-            <option value="3">Per Tahun</option>
-        </select>
-        <br /><br />
-
-        <div id="form-tanggal">
-            <label>Tanggal</label><br>
-            <input type="text" name="tanggal" class="input-tanggal" />
-            <br /><br />
+        <div class="form-row">
+          <div class="form-group col-md-2">
+              <label for=filter"">Filter Berdasarkan</label>
+              <select name="filter" id="filter" class="form-control">
+                  <option value="">Pilih</option>
+                  <option value="1">Per Tanggal</option>
+                  <option value="2">Per Bulan</option>
+                  <option value="3">Per Tahun</option>
+              </select>
+          </div>
         </div>
 
-        <div id="form-bulan">
-            <label>Bulan</label><br>
-            <select name="bulan">
-                <option value="">Pilih</option>
-                <option value="1">Januari</option>
-                <option value="2">Februari</option>
-                <option value="3">Maret</option>
-                <option value="4">April</option>
-                <option value="5">Mei</option>
-                <option value="6">Juni</option>
-                <option value="7">Juli</option>
-                <option value="8">Agustus</option>
-                <option value="9">September</option>
-                <option value="10">Oktober</option>
-                <option value="11">November</option>
-                <option value="12">Desember</option>
-            </select>
-            <br /><br />
-        </div>
+          <div class="form-row">
+              <div class="form-group col-md-2" id="form-tanggal">
+                <label for="tanggal">Tanggal</label>
+                <input type="text"  id="tanggal" name="tanggal" class="input-tanggal" class="form-control"/>
+              </div>
+          </div>
 
-        <div id="form-tahun">
-            <label>Tahun</label><br>
-            <select name="tahun">
+          <div class="form-row">
+            <div class="form-group col-md-2" id="form-bulan">
+              <label for="bulan">Bulan</label>
+              <select id="bulan" name="bulan" class="form-control">
+                  <option value="">Pilih</option>
+                  <option value="1">Januari</option>
+                  <option value="2">Februari</option>
+                  <option value="3">Maret</option>
+                  <option value="4">April</option>
+                  <option value="5">Mei</option>
+                  <option value="6">Juni</option>
+                  <option value="7">Juli</option>
+                  <option value="8">Agustus</option>
+                  <option value="9">September</option>
+                  <option value="10">Oktober</option>
+                  <option value="11">November</option>
+                  <option value="12">Desember</option>
+              </select>
+            </div>
+          </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-2" id="form-tahun">
+            <label for="tahun">Tahun</label>
+            <select id="tahun" name="tahun" class="form-control">
                 <option value="">Pilih</option>
                 <?php
                 foreach($option_tahun as $data){ // Ambil data tahun dari model yang dikirim dari controller
@@ -95,21 +65,21 @@
                 }
                 ?>
             </select>
-            <br /><br />
+          </div>
         </div>
 
-        <button type="submit">Tampilkan</button>
-        <a href="<?php echo base_url(); ?>">Reset Filter</a>
-
+            <button type="submit">Tampilkan</button>
+            <a href="<?php echo base_url(); ?>" style="margin-left:20px">Reset Filter</a>
     </form>
-    <hr/>
+        <hr>
 
-    <b><?php echo $ket; ?></b><br /><br />
-    <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br /><br />
+    <b><?php echo $ket; ?></b><br/><br/>
+    <a href="<?php echo $url_cetak; ?>">CETAK PDF</a><br/><br/>
+    <a href="<?php echo $url_cetak; ?>">PDF</a><br/><br/>
 
-    <table border="1" cellpadding="8">
+    <table class="table table-bordered" class="table-responsive" border="1" cellpadding="8">
     <tr>
-    <th>No. Faktur</th>
+        <th>No. Faktur</th>
         <th>Tanggal</th>
         <th>No. Faktur Transaksi Masuk</th>
         <th>Total Sepatu</th>
@@ -173,6 +143,8 @@
         })
     })
     </script>
+
 </table>
+
 </body>
 </html>

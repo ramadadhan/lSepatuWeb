@@ -11,25 +11,13 @@
 <script src="<?php echo base_url().'assets/js/moment.js'?>"></script>
 <script src="<?php echo base_url().'assets/js/bootstrap-datetimepicker.min.js'?>"></script>
 
-<!-- <script>
-    function openNav() {
-        document.getElementById("myNav").style.height = "100%";
-    }
+<script>
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+</script>
 
-    function closeNav() {
-        document.getElementById("myNav").style.height = "0%";
-    }
-</script> -->
-
-<!-- <script>
-$('.menu, .overlay').click(function () {
- $('.menu').toggleClass('clicked');
-
- $('#nav').toggleClass('show');
-
-});
-</script> -->
 
 </body>
-
 </html>

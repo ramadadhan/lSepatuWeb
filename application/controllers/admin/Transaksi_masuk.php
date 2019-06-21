@@ -1,10 +1,11 @@
-<?php 
+<?php
 
 class Transaksi_masuk extends CI_Controller{
 	function __construct(){
-		parent::__construct();		
-		$this->load->model('m_paket');	
+		parent::__construct();
+		$this->load->model('m_paket');
 		$this->load->model('m_penjualan');
+		$this->load->library('session');
 	}
 
 	function index () {
@@ -30,7 +31,7 @@ class Transaksi_masuk extends CI_Controller{
 	}
 
 	function get_member(){
-        $idmember=$this->input->post('kode');
+    $idmember=$this->input->post('kode');
 		$data=$this->m_penjualan->get_member($idmember);
 		echo json_encode($data);
     }
@@ -44,22 +45,22 @@ class Transaksi_masuk extends CI_Controller{
 				'id'       => $i['paket_id'],
       		  	'name'     => $i['paket_nama'],
                	'satuan'   => $i['paket_satuan'],
-	           'price'   => $i['paket_harga'],	           	         
+	           'price'   => $i['paket_harga'],
 	           'qty'      => $this->input->post('qty'),
-	          
+
 		);
 
-		
+
 		$this->cart->insert($data);
 		redirect('admin/transaksi_masuk');
 	}
-	function remove(){	
+	function remove(){
 		$row_id=$this->uri->segment(4);
 		$this->cart->update(array(
                'rowid'      => $row_id,
                'qty'     => 0
             ));
-		redirect('admin/transaksi_masuk');    
+		redirect('admin/transaksi_masuk');
     }
 
 	function simpan_transaksi_masuk () {
@@ -78,24 +79,24 @@ class Transaksi_masuk extends CI_Controller{
 
 		if ($order_proses) {
 			$this->cart->destroy();
-			
+
 			redirect('admin/transaksi_masuk');
 		} else {
 
 			redirect('admin/transaksi_masuk');
 		}
 
-		
+
 
 		// if($order_proses){
 		// 	$this->cart->destroy();
-		
+
 		// 	redirect('admin/transaksi_masuk');
-		// } 
+		// }
 
 
 
-	} 
+	}
 
 
 

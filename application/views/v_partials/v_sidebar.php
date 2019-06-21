@@ -1,5 +1,5 @@
 <?php
-	$this->load->view("v_partials/v_navbar_header");
+	$this->load->view("v_partials/v_sidebar_header");
 ?>
 
 <?php
@@ -26,5 +26,5 @@
 </nav>
 <div class="overlay"></div>
 <?php
-	$this->load->view("v_partials/v_navbar_footer");
+	$this->load->view("v_partials/v_sidebar_footer");
 ?>

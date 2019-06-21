@@ -8,19 +8,20 @@
 		}
 		table td {
 			word-wrap:break-word;
-			width: 20%;
+			width: 9%;
 		}
 	</style>
 </head>
 <body>
 
-    <b><?php echo $ket; ?></b><br /><br />
+
+    <b><?php echo $ket; ?></b><br/><br/>
 
 	<table border="1" width="100%">
 	<tr>
-    <th>No. Faktur</th>
+    		<th>No.Faktur</th>
         <th>Tanggal</th>
-        <th>No. Faktur Transaksi Masuk</th>
+        <th>No.Faktur Transaksi Masuk</th>
         <th>Total Sepatu</th>
         <th>Total</th>
         <th>Jumlah Uang</th>
@@ -29,7 +30,7 @@
         <th>ID User</th>
         <th>Nama</th>
         <th>Alamat</th>
-        <th>No. Telpon</th>
+        <th>No.Telpon</th>
     </tr>
     <?php
     if(!empty($tbl_transaksi_keluar)){
@@ -57,5 +58,7 @@
     }
     ?>
 	</table>
+
+
 </body>
 </html>

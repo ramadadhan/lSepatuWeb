@@ -1,4 +1,4 @@
-<?php 
+<?php
 class M_penjualan extends CI_Model{
 function get_member($idmember) {
 	$hsl=$this->db->query("SELECT * FROM tbl_user WHERE user_id='$idmember'");
@@ -18,10 +18,10 @@ function get_member($idmember) {
 function get_tm_nofak(){
 		$q = $this->db->query("SELECT MAX(RIGHT(tm_nofak,4)) AS kd_max FROM tbl_transaksi_masuk WHERE DATE(tm_tanggal)=CURDATE()");
         $kd = "";
-        $tm = "TM"; 
+        $tm = "TM";
         if($q->num_rows()>0){
             foreach($q->result() as $k){
-            	
+
                 $tmp = ((int)$k->kd_max)+1;
                 $kd = sprintf("%04s", $tmp );
             }
@@ -35,7 +35,7 @@ function get_tm_nofak(){
 
 	function simpan_transaksi_masuk($tm_nofak,$total,$total_sepatu,$keterangan,$id_member,$nama,$alamat,$no_telp){
 
-		$tm_users_id_peg="2";
+		$tm_users_id_peg = $this->session->userdata('users_id');
 		$this->db->query("INSERT INTO tbl_transaksi_masuk(
 				tm_nofak,tm_total_sepatu,tm_total,tm_users_id_peg,tm_keterangan,tm_users_id_cus,tm_nama,tm_alamat,tm_no_telp)
 				VALUES ('$tm_nofak','$total_sepatu','$total','$tm_users_id_peg','$keterangan','$id_member','$nama','$alamat','$no_telp')");
@@ -78,11 +78,11 @@ function get_tm_nofak(){
             foreach ($hsl->result() as $data) {
                 $hasil=array(
                     'dtm_nofak' => $data->dtm_nofak,
-                    'dtm_paket_nama' => $data->dtm_paket_nama,                      
+                    'dtm_paket_nama' => $data->dtm_paket_nama,
                     'dtm_satuan' => $data->dtm_satuan,
                     'dtm_harga' => $data->dtm_harga,
                     'dtm_qty' => $data->dtm_qty,
-                    'dtm_total' => $data->dtm_total,                    
+                    'dtm_total' => $data->dtm_total,
                     );
             }
         }
@@ -95,10 +95,10 @@ function get_tm_nofak(){
             foreach ($hsl->result() as $data) {
                 $hasil=array(
                     'tm_total_sepatu' => $data->tm_total_sepatu,
-                    'tm_total' => $data->tm_total,                      
+                    'tm_total' => $data->tm_total,
                     'tm_user_id' => $data->tm_user_id,
                     'tm_nama' => $data->tm_nama,
-                    'tm_status_bayar' => $data->tm_status_bayar,                    
+                    'tm_status_bayar' => $data->tm_status_bayar,
                     );
             }
         }
@@ -111,7 +111,7 @@ function get_tm_nofak(){
         $tk = "TK";
         if($q->num_rows()>0){
             foreach($q->result() as $k){
-            	
+
                 $tmp = ((int)$k->kd_max)+1;
                 $kd = sprintf("%04s", $tmp );
             }
@@ -126,10 +126,10 @@ function get_tm_nofak(){
 				tk_nofak,tk_tm_nofak,tk_total_sepatu,tk_total,tk_jml_uang,tk_kembalian,tk_admin_id,tk_user_id,tk_nama,tk_alamat,tk_no_telp)
 				VALUES ('$tk_nofak','$tm_nofak','$total_sepatu','$total','$jml_uang','$kembalian','$admin_id','$idm','$nama','no','no')");
 
-		
+
 
 		$this->db->query("update tbl_transaksi_masuk set tm_status_bayar= 'sudah' where tm_nofak='$tm_nofak'");
-		
+
 		return true;
 
 	}

@@ -5,6 +5,7 @@ class Owner extends CI_Controller{
 			parent::__construct();
 		 	is_logged_in();
 			$this->load->model('M_menu');
+			$this->load->model('M_paket');
 	}
 
 	public function index()
@@ -19,4 +20,16 @@ class Owner extends CI_Controller{
         $this->load->view('v_index');
         $this->load->view('v_partials/v_index_footer');
 			 }
+
+		public function	dataPegawai()
+		{
+			$data['title'] = 'Data Pegawai';
+			$data['paket'] = $this->M_pegawai->getPegawai()->result();
+
+			$this->load->view('v_partials/v_index_header',$data);
+			$this->load->view('v_partials/v_sidebar',$data);
+			$this->load->view('v_owner/v_data_pegawai',$data);
+			$this->load->view('v_partials/v_index_footer');
+
+		}
 	}

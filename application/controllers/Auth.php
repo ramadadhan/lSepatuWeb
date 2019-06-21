@@ -14,13 +14,7 @@ class Auth extends CI_Controller {
 
     public function index()
     {
-      // if($this->session->userdata('users_level_id' == 3)){
-      //     redirect('User');
-      // } else if ($this->session->userdata('users_level_id' == 2)) {
-      //     redirect('Pegawai');
-      // } else if ($this->session->userdata('users_level_id' == 1)) {
-      //     redirect('Owner');
-      // }
+
 
         //form validation for field
         $this->form_validation->set_rules('users_email','email', 'trim|required|valid_email');
@@ -32,8 +26,8 @@ class Auth extends CI_Controller {
             $this->load->view('auth/v_partials/v_auth_header',$data);
             $this->load->view('auth/v_login');
             $this->load->view('auth/v_partials/v_auth_footer');
-        } else {
 
+        } else {
             $this->_usersLogin();
         }
     }
@@ -53,7 +47,8 @@ class Auth extends CI_Controller {
                 if(password_verify($users_password, $users['users_password'])){
                     $data = [
                         'users_email' => $users['users_email'],
-                        'users_level_id' => $users['users_level_id']
+                        'users_level_id' => $users['users_level_id'],
+                        'users_id' => $users['users_id']
                     ];
                     $this->session->set_userdata($data);
                         if($users['users_level_id'] == 1) {
@@ -63,7 +58,7 @@ class Auth extends CI_Controller {
                           } else if ($users['users_level_id'] == 3) {
                             redirect('Customer');
                         } else {
-                          redirect('auth');
+                          redirect('Auth');
                         }
 
                     } else {
@@ -87,7 +82,7 @@ class Auth extends CI_Controller {
 
     }
 
-    public function usersRegistrasi()
+    public function registPg()
     {
           if($this->session->userdata('users_email')){
           redirect('Pegawai');
@@ -117,11 +112,14 @@ class Auth extends CI_Controller {
               $this->load->view('auth/v_partials/v_auth_footer');
 
           } else {
-              $this->M_auth->pgRegistrasi();
-              // $this->M_auth->getToken();
+              $this->M_auth->registPg();
 
               $users_email = $this->input->post('users_email','true');
               $token = base64_encode(random_bytes(32));
+
+              $this->M_auth->getToken($users_email,$token);
+
+              /*
               $tbl_token =  [
                   'tk_email' => $users_email,
                   'tk_token' => $token,
@@ -129,9 +127,9 @@ class Auth extends CI_Controller {
 
               ];
               $this->db->insert('tbl_token',$tbl_token);
+              */
 
               $this->_sendEmail($token,'verify');
-
               $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">
               akun berhasil dibuat, mohon aktivasi terlebih dahulu</div>');
               redirect('auth');
@@ -196,11 +194,13 @@ class Auth extends CI_Controller {
             if($tbl_token) {
                 if(time() - $tbl_token['tk_time'] < ('60*60*24')) {
 
-                    $this->db->set('users_status',1);
-                    $this->db->where('users_email',$users_email);
-                    $this->db->update('tbl_users');
+                    $this->M_auth->Activation($users_email,$token);
 
-                    $this->db->delete('tbl_token',['tk_email' =>$token]);
+                    // $this->db->set('users_status',1);
+                    // $this->db->where('users_email',$users_email);
+                    // $this->db->update('tbl_users');
+                    // $this->db->delete('tbl_token',['tk_email' =>$token]);
+
                     $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">'. $users_email . '
                     telah di aktivasi. silahkan login</div>');
                     redirect('auth');
