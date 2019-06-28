@@ -297,7 +297,7 @@
     </script> -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#idm').on('input', function() {
+            $('#id_member').on('input', function() {
 
                 var kode = $(this).val();
                 $.ajax({
@@ -309,11 +309,11 @@
                     },
                     cache: false,
                     success: function(data) {
-                        $.each(data, function(user_id, user_nama, user_alamat, user_no_telp) {
+                        $.each(data, function(users_id, users_nama, users_alamat, users_no_telp) {
                             //$('[name="id_member"]').val(data.user_id);
-                            $('[name="nama"]').val(data.user_nama);
-                            $('[name="alamat"]').val(data.user_alamat);
-                            $('[name="telp"]').val(data.user_no_telp);
+                            $('[name="nama"]').val(data.users_nama);
+                            $('[name="alamat"]').val(data.users_alamat);
+                            $('[name="telp"]').val(data.users_no_telp);
 
                         });
 

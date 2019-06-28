@@ -42,10 +42,10 @@ class M_paket extends CI_Model{
     //     }
 	// }
 
-	function get_member($idmember){
-		$hsl=$this->db->query("SELECT * FROM tbl_user WHERE user_id ='$idmember'");
-		return $hsl;
-	}
+	// function get_member($idmember){
+	// 	$hsl=$this->db->query("SELECT * FROM tbl_user WHERE user_id ='$idmember'");
+	// 	return $hsl;
+	// }
 
 	function input_data($data,$table){
         $this->db->insert($table,$data);

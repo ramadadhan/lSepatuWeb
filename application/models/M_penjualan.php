@@ -1,14 +1,14 @@
 <?php
 class M_penjualan extends CI_Model{
 function get_member($idmember) {
-	$hsl=$this->db->query("SELECT * FROM tbl_user WHERE user_id='$idmember'");
+	$hsl=$this->db->query("SELECT * FROM tbl_users WHERE users_id='$idmember' && users_level_id = '3' ");
         if($hsl->num_rows()>0){
             foreach ($hsl->result() as $data) {
                 $hasil=array(
-                    'user_id' => $data->user_id,
-                    'user_nama' => $data->user_nama,
-                    'user_alamat' => $data->user_alamat,
-                    'user_no_telp' => $data->user_no_telp,
+                    'users_id' => $data->users_id,
+                    'users_nama' => $data->users_nama,
+                    'users_alamat' => $data->users_alamat,
+                    'users_no_telp' => $data->users_no_telp,
                     );
             }
         }

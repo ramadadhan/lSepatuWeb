@@ -156,18 +156,22 @@
                         <tr>
                             <!-- <td style="width:760px;" rowspan="2"><button type="submit" class="btn btn-info btn-lg"> Simpan</button></td> -->
                             <th style="width:140px;">Total Belanja(Rp)</th>
-                            <th style="text-align:right;width:140px;"><input type="text" id="total" name="total" value="<?php echo $tm['tm_total'];?>" class="total form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
-                            <input type="hidden" id="total2" name="total2" value="<?php echo $tm['tm_total'];?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
+                            <th style="text-align:right;width:140px;"><input type="text" id="total3" name="total3" value="<?php echo $tm['tm_total'];?>" class="total3 form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly></th>
+                            <input type="hidden" id="total" name="total" value="<?php echo $tm['tm_total'];?>" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly>
                         </tr>
                         <tr>
                             <th>Tunai(Rp)</th>
-                            <th style="text-align:right;"><input type="text" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
-                            <input type="hidden" id="jml_uang2" name="jml_uang2" class="form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
+                            <th style="text-align:right;"><input type="text" id="jml_uang3" name="jml_uang3" class="jml_uang3 form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+
+
+                            <input type="hidden" id="jml_uang" name="jml_uang" class="jml_uang form-control input-sm" style="text-align:right;margin-bottom:5px;" required>
                         </tr>
 
                         <tr>
                             <th>Kembalian(Rp)</th>
-                            <th style="text-align:right;"><input type="text" id="kembalian" name="kembalian" class="kembalian form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
+                            <th style="text-align:right;"><input type="text" id="kembalian3" name="kembalian3" class="kembalian3 form-control input-sm" style="text-align:right;margin-bottom:5px;" readonly=""></th>
+
+                            <input type="hidden" id="kembalian" name="kembalian" class="kembalian form-control input-sm" style="text-align:right;margin-bottom:5px;" required></th>
 
 
                         </tr>
@@ -179,7 +183,7 @@
                         </tr>
                         <tr>
                             <th>Atas Nama</th>
-                            <th style="text-align:right;"><input type="text" id="nama" name="nama" value="<?php echo $tm['tm_nama'];?>" class="form-control input-sm" style="margin-bottom:5px;text-align:right;" required></th>
+                            <th style="text-align:right;"><input type="text" id="nama" name="nama" value="<?php echo $tm['tm_nama'];?>" class="form-control input-sm" style="margin-bottom:5px;text-align:right;" readonly></th>
                         </tr>
 
                         <tr>
@@ -313,12 +317,13 @@
 
     <script type="text/javascript">
         $(function() {
-            $('#jml_uang').on("input", function() {
+            $('#jml_uang3').on("input", function() {
                 var total = $('#total').val();
-                var jumuang = $('#jml_uang').val();
+                var jumuang = $('#jml_uang3').val();
                 var hsl = jumuang.replace(/[^\d]/g, "");
                 $('#jml_uang').val(hsl);
                 $('#kembalian').val(hsl - total);
+                $('#kembalian3').val(hsl - total);
             })
 
         });
@@ -336,26 +341,60 @@
                 prefix: '',
                 //centsSeparator: '',
                 centsLimit: 0,
+                thousandsSeparator: ''
+            });
+            $('.jml_uang3').priceFormat({
+                prefix: '',
+                //centsSeparator: '',
+                centsLimit: 0,
                 thousandsSeparator: ','
             });
-            $('#.jml_uang2').priceFormat({
+
+            $('#.jml_uang').priceFormat({
                 prefix: '',
                 //centsSeparator: '',
                 centsLimit: 0,
                 thousandsSeparator: ''
             });
-            $('#.kembalian').priceFormat({
+            $('.kembalina').priceFormat({
+                prefix: '',
+                //centsSeparator: '',
+                centsLimit: 0,
+                thousandsSeparator: ''
+            });
+            $('.kembalian3').priceFormat({
                 prefix: '',
                 //centsSeparator: '',
                 centsLimit: 0,
                 thousandsSeparator: ','
+            });
+
+            $('#.kembalian').priceFormat({
+                prefix: '',
+                //centsSeparator: '',
+                centsLimit: 0,
+                thousandsSeparator: ''
             });
             $('.total').priceFormat({
                 prefix: '',
                 //centsSeparator: '',
                 centsLimit: 0,
+                thousandsSeparator: ''
+            });
+            $('.total3').priceFormat({
+                prefix: '',
+                //centsSeparator: '',
+                centsLimit: 0,
                 thousandsSeparator: ','
             });
+
+            $('#.total').priceFormat({
+                prefix: '',
+                //centsSeparator: '',
+                centsLimit: 0,
+                thousandsSeparator: ''
+            });
+            
         });
 
     </script>
